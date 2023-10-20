@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+:root {
+    --offwhite: #f0f0f0;
+    --white: #ffffff;
+    --red: #96352c;
+    --ltgreen: #14b393;
+    --fntwight: #f7f7f7;
+    --icncolor: #72787f;
+    --drakgray: #2a373f;
+    --logoorange: #ff8908;
+
+  }
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--offwhite);
+}  
+
+/* header start */
+header{
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 8vh;
+    background-color: var(--logoorange);
+    display: grid;
+    grid-template-columns: 10% 70% 20%;
+    align-items: center;
+}
+header h1{
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--fntwight);
+    margin-left: 15px;
+}
+header i{
+    font-size: 1.4rem;
+    color: var(--fntwight);
+    padding: 0px 30px 0px 15px;
+}
+
+
+  /* on/off switch start */
+.onoffswitch{
+    height: 100%;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.onoffswitch p{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--white);
+    padding: 0;
+    margin: 0;
+    text-transform: uppercase;
+}
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+    transform:scale(0.5);
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:after {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .slider:after {
+    -webkit-transform: translateX(16px);
+    -ms-transform: translateX(16px);
+    transform: translateX(26px);
+  }
+
+.slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:after {
+    border-radius: 50%;
+  }
+  /* on/off switch end */
+/* header end */
+
+/* main start */
+main{
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: var(--white);
+}
+
+main h2{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--drakgray);
+    margin: 0 0 0 3%;
+    padding: 20px 0;
+}
+
+.nt-details{
+    width: 95%;
+    max-width: 600px;
+    background-color: var(--offwhite);
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 20% 80%;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+.nt-details div:nth-child(1){
+    text-align: center;
+}
+.nt-details div:nth-child(1) i{
+    font-size: 2rem;
+    color: var(--drakgray);
+    
+}
+.nt-details h3 {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0 0 0 ;
+    color: var(--drakgray);
+
+}
+.nt-details h3 b{
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0;
+    color: var(--drakgray);
+
+}
+.nt-details div:nth-child(2) div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin: 10px 0px;
+}
+.nt-details div:nth-child(2) div p{
+    font-size: 16px;
+    margin: 0 0 0 .5rem;
+    color: var(--icncolor);
+}
+.nt-details div:nth-child(2) div i{
+    color: var(--icncolor);
+}
+/* main end */
+
+
+/* notification screen-view start */
+
+@media only screen and (min-width: 610px){
+  main h2{
+    width: 630px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+@media only screen and (min-width: 900px){
+  main{
+    height: 100vh;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+  }
+}
+
+
+/* notification screen-view start */

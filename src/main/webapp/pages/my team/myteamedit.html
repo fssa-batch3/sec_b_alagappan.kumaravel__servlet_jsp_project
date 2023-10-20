@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Team profile edit</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/profileedit.css">
+        <link rel="stylesheet" href="../../assets/css/commonheader.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header>
+            <a onclick="previousPage()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1>Edit My Team</h1>
+         <!--    <a class="deleteTeam" onclick="teamDelete(event)">
+                <i class="fa-solid fa-trash-can"></i>
+            </a> -->
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <main>
+            <script async src="//freeimage.host/sdk/pup.js" data-url="https://freeimage.host/upload"></script>
+        
+        	
+            <div class="changephoto">
+                <input class="team_image_show" alt="team image" id="team_image_show" type="image">
+                <textarea id="image_host_url" style="visibility:hidden;"></textarea>
+                
+            </div>
+            <div class="headerbottom">	
+                <button class="darkbtn" onclick="profileEdit()" type="button">PROFILE</button>
+                <button class="lightbtn" onclick="memberEdit()" type="button">MEMBER</button>
+                <div class="toggle_button"></div>
+            </div>
+            <section class="first"> 
+                <form>
+                    <label>Team name</label>
+                    <input id="teamname" type="text" title="Use firstletter between (A-Z) and min 15 character" pattern="^[a-zA-Z][a-zA-Z\s]{1,30}$" autocomplete="off" required> 
+                    <p class="wrong_password"></p>  
+                    <label>Area</label> 
+                    <input id="area" type="text" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" autocomplete="off"required> 
+
+                    <label>Distric</label> 
+                    <input id="distric" type="text" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$"autocomplete="off" required> 
+		
+                    <label>About</label>
+                    <input type="text" id="team_about" maxLength="50"></input>
+		
+                    <div>
+                        <label class="onoffdiv">Open for players (On/Off)</label>
+                        <label class="switch">
+                            <input type="checkbox" id="open_for_players">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <label>Players Description</label>
+                    <input type="text" id="team_player_description" maxLength="50"></input>
+
+                </form>		 
+                <!-- <div class="updatediv">
+                    <button onclick="teamUpdate(event)" type="button">UPDATE</button>
+                    </div>  -->
+            </section>
+            <section class="second">
+
+                <div class="popup_content">
+
+                    <div class="updatediv">
+                        <button type="button" onclick="ClosePopup()">CANCEL</button>
+                    </div>
+                </div>
+            </section> 
+            <div class="updatediv">
+                <button onclick="teamUpdate(event)" type="button">UPDATE</button>
+            </div>
+
+                <input id="team_image" type="url"  style="visibility:hidden;" pattern="https?://.+\.(jpg|jpeg|png|gif|bmp|webp)$"> 
+
+        </main>
+      
+        <!-- main end -->
+        <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../../assets/js/teamEdit.js"></script>
+        
+        <script>
+        var textarea = document.getElementById("image_host_url");
+
+        textarea.addEventListener("input", function () {
+         var inputString = textarea.value;
+         var regex = /\[img\](.*?)\[\/img\]/;
+
+         var match = regex.exec(inputString);
+
+         if (match) {
+             // The URL is in match[1]
+             var extractedURL = match[1];
+             console.log("Extracted URL: " + extractedURL);
+             document.getElementById("team_image").value = extractedURL;
+             document.getElementById("team_image_show").setAttribute("src", extractedURL);
+         } else {
+             console.log("No URL found between [img] and [/img]");
+         }
+        });
+    </script>
+    </body>
+</html>

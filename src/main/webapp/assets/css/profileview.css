@@ -1,0 +1,537 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+:root {
+    --offwhite: #f0f0f0;
+    --white: #ffffff;
+    --red: #96352c;
+    --ltgreen: #14b393;
+    --fntwight: #f7f7f7;
+    --icncolor: #72787f;
+    --drakgray: #2a373f;
+    --logoorange: #ff8908;
+
+  }
+* a{
+    text-decoration: none;
+}
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--white);
+    font-family: 'Source Sans Pro', sans-serif;
+}  
+
+/* three content swipe css start */
+
+section.second{
+display: none;
+}
+section.three{
+    display: none;
+}
+
+/* header start */
+header{
+    width: 100%;
+    height: 30vh;
+    min-height: 250px;
+    position: relative;
+    overflow: hidden;
+}
+.bgimg{
+    position: absolute;
+    width: 100%;
+    height: 120%;
+    opacity: 0.5;
+    z-index: -11;
+    top: -10%;
+    left: 0%;
+}
+.color{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    z-index: -1;
+    background-image: linear-gradient(transparent, #425154c2 ,#28373cf4);
+}
+/* header top start */
+header .top {
+    width: 100%;
+    height: 20%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+header .top i{
+    font-size: 1.6rem;
+    color: var(--drakgray);
+    margin: 0px 10px ;
+}
+/* header top end */
+.sidebar-profile{
+    width: 100%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+}
+
+.playerimagediv{
+    width: 30%;
+    height: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: initial;
+}
+.playerimagediv img{
+    width: 75%;
+    height: 80%;
+    border-radius: 100%;
+    border: 2px solid var(--white);
+}
+
+.profiledetailsdiv{
+    width: 70%;
+    height: 60%;
+}
+.profiledetailsdiv p.name{
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--fntwight);
+    margin: 0;
+}
+.profiledetailsdiv i{
+    font-size: 16px;
+    color: var(--logoorange);
+    margin: 0;
+    padding-right: 15px;
+}
+.profiledetailsdiv p{
+    font-size: 16px;
+    color: var(--fntwight);
+    margin: 0;
+}
+
+.profiledetailsdiv div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/* header end */
+/* main start */
+main{
+    width: 100%;
+}
+.headerbottom{
+    width: 100%;
+    height: 5vh;
+    background-color: var(--drakgray);
+    display: flex;
+    position: relative;
+    
+}
+.headerbottom a{
+    flex-grow: 4;
+}
+.headerbottom button{
+    width: 100%;
+    height: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: transparent;
+    color: var(--fntwight);
+    margin: 0;
+    padding: 0;
+    opacity: .8;
+    cursor: pointer;
+    
+    
+}
+.button_underline{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background-color: var(--logoorange);
+    transition: .3s;
+}
+/* .headerbottom button:hover, .headerbottom button:active{
+    opacity: 1;
+    border-bottom: 2px solid var(--logoorange);
+} */
+/* player profile start */
+.playerprofile{
+    width: 100%;
+    background-color: var(--white);
+}
+.playerprofile table {
+    width: 100%;
+}
+
+.playerprofile table tbody tr td:nth-child(1){
+    font-size: 16px;
+    color: var(--icncolor);
+    font-weight: 600;
+    width: 40%;
+    padding-left: 7%;
+    padding-top: 20px;
+}
+.playerprofile table tbody tr td:nth-child(2){
+    font-size: 18px;
+    color: #000;
+    font-weight: 600;
+    width: 60%;
+    padding-top: 20px;
+}
+
+/* player profile end */
+/* player Match start */
+.playermatch{
+    width: 100%;
+    height: 75vh;
+    background-color: var(--offwhite);
+    overflow-y: scroll;
+    text-align: center;
+    padding-top: 7%;
+    font-size: 18px;
+    /* display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center; */
+}
+.empty_content{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--drakgray);
+    text-align: center;
+}
+
+/* team detail start */
+.teams{
+    width: 97%;
+    max-width: 500px;
+    height: 18%;
+    background-color: var(--white);
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+
+}
+.teamimagediv{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+.teamprofile{
+    width: 80%;
+    height: 60%;
+    border-radius: 100px;
+}
+.teamdetaildiv{
+    height: 100%;
+    width: 80%;
+    padding-left: 10px;
+}
+.teamdetaildiv div:nth-child(1){
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teamdetaildiv h2{
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 5px;
+    color: #000;
+}
+.teamdetaildiv p{
+    margin: 0;
+}
+
+.exit_from_team{
+    text-decoration: none;
+    color: var(--red);
+    font-size: 18px;
+    font-weight: 600;
+
+}
+
+.teamdetaildiv div:nth-child(1) div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: start;
+    margin-right: 10px;
+    
+}
+.teamdetaildiv div:nth-child(1) div:nth-child(2) p{
+    color: #ff8906;
+    margin-left: 5px;
+}
+
+.matchdetails{
+    margin-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: initial;
+    justify-content: start;
+    
+}
+.matchdetails p{
+    font-size: 14px;
+    margin-left: .5rem;
+    color: var(--icncolor);
+    /* width: 90%; */
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.teams i, .myteam i{
+    color: var(--icncolor);
+}
+
+/* team details end */
+/* player Match end */
+/* player team start*/
+.playerteam{
+    width: 100%;
+    height: 65vh;
+    background-color: var(--offwhite);
+    padding-top: 5px;
+}
+
+.myteam{
+    width: 95%;
+    max-width: 500px;
+    height: 100px;
+    background-color: var(--white);
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+/* player team end*/
+
+.playerimg{
+    border: 2px solid var(--offwhite);
+}
+
+.playerdet{
+    padding-top: 20px;
+}
+.playerdet b{
+    color: var(--icncolor);
+    font-weight: 600;
+    font-size: 16px;
+    margin-left: 10px;
+}
+.playername{
+    color: #000;
+    font-weight: 600;
+    font-size: 18px;
+}
+.whatsapp i{
+    color: #14b393;
+    font-size: 26px;
+}
+
+.title-name{
+    display: none;
+}
+
+
+/* stats css start */
+.stats_container{
+    width: 100%;
+    height: 60vh;
+    min-height: 450px;
+    max-height: 500px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.four h2{
+    color:#000;
+    font-weight: 600;
+    font-size: 20px;
+    margin: 15px 0px 15px 10px;
+}
+.stats_container .stats_left{
+    width: 60%;
+    height: 100%;
+    padding-top: 10%;
+
+}
+.stats_container .stats_right{
+    width: 40%;
+    height: 100%;
+    text-align: center;
+    padding-top: 10%;
+}
+.stats_left h3{
+    color:var(--icncolor);
+    font-weight: 600;
+    font-size: 20px;
+    margin: 15px 0px 15px 10px;
+}
+.stats_left p{
+    color:var(--drakgray);
+    font-weight: 600;
+    font-size: 36px;
+    margin: 15px 0px 15px 20px;
+}
+
+.stats_right p{
+    color:var(--drakgray);
+    font-weight: 600;
+    font-size: 20px;
+    margin: 15px 0px ;
+}
+/* stats css end */
+
+/* main end */
+/* Profile view laptop screen start */
+@media only screen and (min-width: 900px){
+    header .top{
+        /* background-color: var(--offwhite);
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2); */
+    }
+    header .top i{
+        font-size: 1.8rem;
+        color: var(--drakgray);
+        margin: 0px 30px ;
+
+    }
+    .title-name{
+        display: block;
+        color: #000;
+    font-weight: 600;
+    font-size: 20px;
+    
+    }
+
+    .bgimg{
+        opacity: 1;
+        width: 80%;
+        height: 120%;
+        top: -10%;
+        margin: 0 10%;
+    }
+    .color{
+        /* background-image: linear-gradient(transparent, transparent, #0d1112c2); */
+    }
+    .playerimagediv{
+        width: 20%;
+        justify-content: end;
+    }
+
+    .playerimagediv img{
+        border-radius: 0;
+        width: 120px;
+        height: 150px;
+        margin-top: auto;
+        margin-bottom: 10px;
+    }
+
+    .profiledetailsdiv{
+        padding-left: 20px;
+        padding-bottom: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+    }
+    header{
+        height: 40vh;
+    }
+    .sidebar-profile{
+        align-items:flex-end;
+    }
+    .playerprofile{
+        width: 750px;
+        height: 370px;
+        border-radius: 10px;
+        margin-top: 10px;
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    }    
+
+    body{
+        background-color: var(--offwhite);
+    }
+
+    main.createteam-main{
+        width: 900px;
+    }
+
+
+
+
+}
+
+
+/* Profile view laptop screen end */
+
+.popup{
+    font-family: 'Source Sans Pro', sans-serif;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 111;
+    transform: scale(.1); 
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s; 
+}
+.open-popup{
+    visibility: visible;
+    transform: scale(1); 
+}

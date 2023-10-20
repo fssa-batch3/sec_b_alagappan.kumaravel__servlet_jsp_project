@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile edit</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/profileedit.css">
+        <link rel="stylesheet" href="../../assets/css/commonheader.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header>
+            <a onclick="previousPage()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1>Edit Profile</h1>
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <main>
+       <script async src="//freeimage.host/sdk/pup.js" data-url="https://freeimage.host/upload"></script>
+        
+            <div class="changephoto">
+                <input class="team_image_show" id="team_image_show" type="image" alt=""> 
+				<textarea id="image_host_url" style="visibility:hidden; height:5px"></textarea>  
+            </div>
+            <form onsubmit="update(event);">
+
+                <label>Firstname</label>
+                <input id="user_first_name" type="text" title="Use alphabet character only and min 15 char" type="text" pattern="[A-Za-z]{0,15}"> 
+
+                <label>Lastname </label>
+                <input id="user_last_name" type="text" title="Use alphabet character only and min 15 char" pattern="[A-Za-z]{0,15}">
+					
+                <label>Username </label>
+                <p class="wrong_password"></p>
+                <input id="user_username" type="text" title="Use firstletter between (A-Z) and min 15 character" pattern="^[a-zA-Z][a-zA-Z\s]{1,15}$" required>
+
+                <label>DOB </label>
+                <input id="user_date_of_birth" type="date" required> 
+				   
+                <label>Gender</label> 
+                <select id="user_gender" required>
+                    <option value="MALE">Male</option>
+                    <option value="FEMALE">Female</option>
+                    <option value="OTHER">Prefer not to say</option>
+                </select>
+				
+				   
+                <label>Area</label> 
+                <input id="user_area" type="text" placeholder="Eg:Annanagar" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required> 
+
+                <label>Distric</label> 
+                <input id="user_distric" type="text" placeholder="Eg:chennai" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required>
+
+                <input id="user_password" type="hidden" >
+
+                <label>About</label>
+                <input id="user_about"></input>
+		        <input id="user_image" type="url" style="visibility:hidden;" pattern="https?://.+\.(jpg|jpeg|png|gif|bmp|webp)$" onfocusout="myFunction()"> 
+		
+                <div class="updatediv">
+                    <button type="submit">UPDATE</button>
+                </div>
+            </form>
+        </main>
+        <!-- main end -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+        <script src="../../assets/js/login.js"></script>
+        <script src="../../assets/js/profileEdit.js"></script>
+		        <script>
+        var textarea = document.getElementById("image_host_url");
+
+        textarea.addEventListener("input", function () {
+         var inputString = textarea.value;
+         var regex = /\[img\](.*?)\[\/img\]/;
+
+         var match = regex.exec(inputString);
+
+         if (match) {
+             // The URL is in match[1]
+             var extractedURL = match[1];
+             console.log("Extracted URL: " + extractedURL);
+             document.getElementById("user_image").value = extractedURL;
+             document.getElementById("team_image_show").setAttribute("src", extractedURL);
+         } else {
+             console.log("No URL found between [img] and [/img]");
+         }
+        });
+    </script>
+    </body>
+</html>

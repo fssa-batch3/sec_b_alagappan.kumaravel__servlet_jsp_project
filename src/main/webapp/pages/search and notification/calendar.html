@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Home page for newmember</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+            integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+            integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==="
+            crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/overall.css">
+        <link rel="stylesheet" href="../../assets/css/update_score.css">
+        <link rel="stylesheet" href="../../assets/css/commonheader.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header class="calender-header">
+            <a class="backtohome">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1>My Matches</h1>
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <div class="my_match_nav">
+            <a class="link1" >Upcoming</a>
+            <a class="link2" style="display:none;">Live</a>
+            <a class="link3" >Completed</a>
+        </div>
+
+        <section class="calendar upcoming">
+
+        </section>
+        <section class="calendar live">
+
+            <div class="popup" id="popup">
+
+                <div class="popup-team-content">
+                    <div class="score_container">
+                        <div class="top">
+                            <div class="backgroundimage">
+                                <div class="score_head">
+                                    <button type="button" class="Closepopup">
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    </button>
+                                    <p>MATCH RESULT</p>
+                                </div>
+                                <div class="team_score">
+                                    <div class="team_name">
+                                        <img class="my_team_image" src="" alt="my team image">
+                                        <p class="my_team_name"></p>
+                                    </div>
+                                    <div class="score_value">
+                                        <h2>How many matches</h2>
+                                        <div class="score">
+                                            <div>
+                                                <input id="won_number" type="number" min="0" max="20" required>
+                                                <p class="subname">Won</p>
+                                            </div>
+
+                                            <div>
+                                                <input id="draw_number" type="number" min="0" max="20" required>
+                                                <p class="subname">Draw</p>
+                                            </div>
+
+                                            <div>
+                                                <input id="loss_number" type="number" min="0" max="20" required>
+                                                <p class="subname">Loss</p>
+                                            </div>
+
+                                        </div>
+                                        <!-- <div>
+								
+                                            </div> -->
+                                    </div>
+                                    <div class="team_name">
+                                        <img class="opp_team_image" src="" alt="opponent image">
+                                        <p class="opp_team_name"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <h2>
+                                Choose two<br>
+                                <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                                Most Valuble Players <i class="fa-solid fa-star"></i>
+                                <i class="fa-solid fa-star"></i>
+                            </h2>
+                            <p id="error_msg"></p>
+                            <div class="players_list">
+
+                            </div>
+                            <div class="invitation-update-scorecard">
+                                <button onclick="updateScore()" class="update-scorecard" type="button">Update Score</button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="calendar completed">
+
+            <!-- popup past result start -->
+            <div class="popup" id="popup_result">
+                <div class="popup-team-content">
+                    <div class="score_container">
+                        <div class="top">
+                            <div class="backgroundimage">
+                                <div class="score_head">
+                                    <button type="button" class="closepopupresult">
+                                        <i class="fa-solid fa-chevron-left"></i>
+                                    </button>
+                                    <p>MATCH RESULT</p>
+                                </div>
+                                <div class="team_score">
+                                    <div class="team_name">
+                                        <img class="my_team_image" id="past_my_team_img" src="" alt="my team image">
+                                        <p class="my_team_name" id="past_my_team"></p>
+                                    </div>
+                                    <div class="score_value">
+                                        <h2>Matches</h2>
+                                        <div class="score">
+                                            <div>
+                                                <p id="past_Won_score"></p>
+                                                <p class="subname">Won</p>
+                                            </div>
+
+                                            <div>
+                                                <p id="past_draw_score"></p>
+                                                <p class="subname">Draw</p>
+                                            </div>
+
+                                            <div>
+                                                <p id="past_loss_score"></p>
+                                                <p class="subname">Loss</p>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <div class="team_name">
+                                        <img class="opp_team_image" id="past_opp_team_img" src="" alt="opponent image">
+                                        <p class="opp_team_name" id="past_opp_team"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bottom">
+                            <div class="result_nav">
+                                <button class="mvpbtn" type="button" >MVPs</button>
+                                <button class="playersbtn" type="button" >Players</button>
+                                <button class="detailsbtn" type="button" >Details</button>
+                            </div>
+                            <!-- match details start -->
+                            <div class="past_match_details">
+                                <h3>Details</h3>
+                                <div class="details">
+                                    <div>
+                                        <i class="fa-regular fa-clock"></i>
+                                        <p id="past_match_time"></p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-shield-halved"></i>
+                                        <p id="past_match_type"></p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        <p id="past_match_location"></p>
+                                    </div>
+                                    <div>
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <p id="past_match_info"></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- match details end -->
+
+                            <!-- match players start -->
+                            <div class="past_match_players">
+                                <h3>Players</h3>
+                                <div class="members">
+                                    <div class="my_team_players">
+                                        <h4></h4>
+                                        <div>
+
+                                        </div>
+
+                                    </div>
+                                    <div class="opp_team_players">
+                                        <h4></h4>
+                                        <div>
+
+                                        </div>
+                                        <!-- <div class="players">
+                                            <img src="../../assets/images/Avatar.png" alt="">
+                                            <p>Madhav</p>
+                                            </div>
+
+                                            <div class="players">
+                                            <img src="../../assets/images/Avatar.png" alt="">
+                                            <p>Madhav</p>
+                                            </div> -->
+
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- match players end -->
+
+                            <!-- match mvps start -->
+                            <div class="mvp_det">
+                                <table class="past_players_list">
+                                    <caption>Most Valuble Players</caption>
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th>Players</th>
+                                            <th>Team</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+
+                                </table>
+
+                            </div>
+                            <!-- match mvps end -->
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <!-- popup past result end -->
+
+            <!-- <div class="past_result_container">
+                <div class="match_time">
+                <p>Sat, Oct-19-2023</p>
+                </div>
+                <div class="past_result">
+                <div class="my_team">
+                <h2>Chennai super kings</h2>
+                <div class="team_img">
+                <img src="../../assets/images/Avatar.png" alt="asdf">
+                <p>CHE</p>
+                </div>
+			
+                </div>
+	
+                <div class="result">
+                <p class="won">3</p>
+                <P>-</P>
+                <p class="loss">1</p>
+                </div>
+	
+                <div class="opp_team">
+                <h2>Karnatakans</h2>
+                <div class="team_img">
+                <p>KAR</p>
+                <img src="../../assets/images/Avatar.png" alt="asdf">
+                </div>
+			
+                </div>
+                </div>
+                </div> -->
+
+            <!-- 	<div class="past_result_container">
+                <div class="match_time">
+                <p>Wed, Oct-22-2023</p>
+                </div>
+                <div class="past_result">
+                <div class="my_team">
+                <h2>Chennai super kings</h2>
+                <div class="team_img">
+                <img src="../../assets/images/Avatar.png" alt="asdf">
+                <p>CHE</p>
+                </div>
+				
+                </div>
+		
+                <div class="result">
+                <p class="won">2</p>
+                <P>-</P>
+                <p class="loss">1</p>
+                </div>
+		
+                <div class="opp_team">
+                <h2>Attackars</h2>
+                <div class="team_img">
+                <p>ATT</p>
+                <img src="../../assets/images/Avatar.png" alt="asdf">
+                </div>
+				
+                </div>
+                </div>
+                </div> -->
+        </section>
+
+        <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+        <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script type="module" src="../../assets/js/myMatch.js"></script>
+        
+
+    </body>
+
+</html>

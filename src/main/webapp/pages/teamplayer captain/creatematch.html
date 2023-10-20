@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Create match</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/creatematch.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header>
+            <div class="header-top">
+                <i onclick="backBtn()" class="fa-solid fa-arrow-left"></i>
+                <h1>Create Match</h1>
+            </div>
+            <div class="select-team-option">
+		
+                <div class="line"></div>
+                <div class="select-team-button">
+                    <div class="toggle_button"></div>
+                    <button class="darkbtn" type="button" onclick="leftbtn()">
+                        <p class="choose_friend">Friend</p>
+                    </button>
+
+                    <button class="lightbtn" type="button" onclick="rightbtn()">
+                        <p class="choose_friend">Public</p>
+                    </button>
+
+                </div>
+                <p class="select_head">Select opponent type</p>
+            </div>
+            <div class="battle-team-div">
+                <div>
+                    <img class="teamimage" alt="">
+                    <div>
+                        <h2 class="my_team_name"></h2>
+                        <div>
+                            <i class="fa-regular fa-copyright"></i>
+                            <p class="my_name"></p>
+                        </div>
+                    </div>
+                </div>
+                <p class="vs">vs</p>
+                <!-- changes -->
+                <div class="select_opponent_div">
+                    <img class="opponent_image" alt="">
+                    <div>
+                        <h2 class="opponent_name"></h2>
+                        <div>
+                            <i></i>
+                            <p class="opp_captain"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- changes -->
+            </div>
+
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <main>
+            <form onsubmit="matchCreate(event)">
+                <label>Members</label>
+                <input id="members" value="11" type="number" min="1" max="14" required>
+	
+                <label>Type of match</label>
+                <select id="type_of_match" required>
+                    <option value="1">Betting match</option>
+                    <option value="2">Friendly match</option>
+                </select>
+
+                <label>Players Age</label>
+                <div class="age">
+                    <label >From</label>
+
+                    <input id="players_from_age" min="10" value="19" max="50" class="age1" type="number" required>
+                    <label>To</label>
+                    <input id="players_to_age" min="10" value="24" max="50" class="age1" type="number" required>
+                <label style="display: block;">Time</label>
+                <input id="date_and_time" type="datetime-local" required>
+	
+                <label>Address (Ground name)</label>
+                <textarea id="address_details">Shennoi nagar park ground</textarea>
+	
+                <label>Additional Details</label>
+                <textarea id="add_info">betting 100rs per match</textarea>
+
+                <p class="alert_msg"></p>
+                <div class="updatediv">
+                    <button type="submit">CREATE</button>
+            </form>
+	
+        </main>
+
+        <!-- main end -->
+        <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+        <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../../assets/js/create_match.js"></script>
+
+    </body>
+</html>

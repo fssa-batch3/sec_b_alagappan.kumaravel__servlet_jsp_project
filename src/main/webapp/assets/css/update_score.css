@@ -1,0 +1,603 @@
+.invitation-update-score{
+    width: 100%;
+    text-align: center;
+}
+
+.past_match_players, .past_match_details{
+    display: none;
+}
+
+.invitation-update-score button, .invitation-update-scorecard button{
+    width: 100%;
+    border: none;
+    padding: 10px 0px;
+    font-size: 18px;
+    font-weight: 500;
+    background-color: var(--ltgreen);
+    color: var(--white);
+    cursor: pointer;
+
+}
+.update_score_div{
+    width: 100%;
+}
+.score_card{
+    width: 100%;
+    margin: 15px 0 0 0 ;
+    border-top: 1.5px solid var(--offwhite);
+}
+.score{
+    width: 100%;
+    padding-top: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.score div{
+    padding: 0px 10px;
+    margin: 20px 0;
+}
+.score div:nth-child(2){
+    border-left:1px solid var(--icncolor);
+    border-right:1px solid var(--icncolor);
+}
+
+.score_title{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--icncolor);
+    position: absolute;
+    top: -13px;
+    background-color: var(--white);
+    bottom: auto;
+    margin: 0;
+    padding: 0px 10px;
+
+}
+.mvp_title{
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--icncolor);
+    position: absolute;
+    top: auto;
+    background-color: var(--white);
+    bottom: -13px;
+    margin: 0;
+    padding: 0px 10px;
+}
+
+.won, .loss, .draw{
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+    margin: 5px 0 0 0 ;
+}
+.subname{
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--icncolor);
+    text-align: center;
+    margin: 5px 0 5px 0 ;
+}
+.fa-thumbs-up{
+    font-size: 25px;
+    font-weight: 500;
+    padding-left: 25%;
+    color: var(--ltgreen);
+}
+.fa-thumbs-down{
+    font-size: 25px;
+    font-weight: 500;
+    padding-right: 25%;
+    color: var(--red);
+}
+.fa-star{
+    font-size: 15px;
+    color: #fb9510;
+}
+
+
+.mvp_div{
+    width: 95%;
+    margin: 0px auto;
+    border-top: 1.5px solid var(--offwhite);
+    padding-top: 20px;
+}
+.mvps{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.1);
+}
+.mvps h2{
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--drakgray);
+}
+.player_img{
+    width: 40px;
+    height: 40px;
+    margin: 0 15px 0 10px;
+}
+.player_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 1.3px solid var(--icncolor);
+} 
+.no_content p{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+/* popup for score update start */
+
+div.score_container{
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+    display: grid;
+    grid-template-rows: 30% 70%;
+    overflow-x: hidden;
+}
+
+div.score_container .top .backgroundimage{
+    width: 100%;
+    height: 100%;
+    background-color: var(--drakgray);
+    opacity: .9;
+    border-bottom-left-radius: 20px ;
+    border-bottom-right-radius: 20px ;
+    
+} 
+div.score_container .top{
+    width: 100%;
+    height: 100%;
+    min-height: 210px;
+    max-height: 300px;
+    background-image: url(../images/coverimage2.jpg);
+    background-size: 100% 100%;
+    border-bottom-left-radius: 20px ;
+    border-bottom-right-radius: 20px ;
+}
+.score_head{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 80%;
+    justify-content: center;
+    align-items: center;
+}
+
+.score_head button{
+    width: 50%;
+    height: 30%;
+    border: none;
+    background: none;
+}
+.score_head button i{
+    font-size: 20px;
+    color: var(--offwhite);
+}
+.score_head p{
+    font-size: 20px;
+    color: var(--offwhite);
+    text-align: center;
+    padding-right: 10%;
+}
+.team_score{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 30% 40% 30%;
+    justify-content: center;
+    align-items: center;
+}
+.team_name{
+    width: 100%;
+    display: grid;
+    grid-template-rows: 70% 30%;
+    align-items: center;
+
+}
+.team_name img{
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    margin: auto;
+}
+.team_name p{
+    font-size: 16px;
+    color: var(--offwhite);
+    text-align: center;
+}
+
+.score_value{
+    width: 100%;
+    display: grid;
+    /* grid-template-rows: 33% 33% 33%; */
+    /* justify-content: center;
+    align-items: center; */
+}
+
+
+.score_value div input{
+    width: 20px;
+    height: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--offwhite);
+    margin: 0 auto;
+    border: none;
+    border-bottom: 2px solid var(--icncolor);
+    outline: none;
+    background: none;
+}
+.score_value div p{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--offwhite);
+    text-align: center;
+    margin: 10px auto;
+}
+
+.score_value h2, .score_lable{
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--offwhite);
+    text-align: center;
+    
+}
+.score_lable{
+    word-spacing: 10px;
+    margin: 0;
+}
+
+.bottom{
+    position: relative;
+    overflow-y: scroll;
+}
+
+.bottom>h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--drakgray);
+    text-align: center;
+    margin: 30px 0 10px 0;
+}
+
+.invitation-update-scorecard{
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
+
+.select_mvp{
+    margin-left: auto;
+    margin-right: 10px;
+    width: 80px;
+    height: 100%;
+}
+
+.select_mvp label{
+    width: 100%;
+    height: 100%;
+    background: none;
+    border: none;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--ltgreen);
+}
+.select_name{
+    display: none;
+}
+
+section.completed, section.live{
+    display: none;
+}
+.my_match_nav a.link1{
+    color: var(--logoorange);
+}
+
+.no_content{
+    width: 100%;
+    height: 100%;
+}
+
+.no_score{
+    width: 100%;
+    border-top: 2px solid var(--offwhite);
+}
+.no_score p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--icncolor);
+}
+
+/* past result css start */
+
+.past_result_container{
+    background-color: var(--white);
+    width: 95%;
+    max-width: 450px;
+    min-width: 350px;
+    margin: 15px auto;
+    border-radius: 10px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.3);
+
+}
+
+.match_time{
+    width: 100%;
+    background-color: #f8f6f5;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+}
+.match_time p{
+    text-align: center;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--drakgray);
+    margin: 5px 0;
+}
+
+.past_result{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 40% 20% 40%;
+}
+.team_img{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+}
+.team_img img{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;  
+    margin: 0 10px 10px 10px;
+}
+.team_img p{
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--drakgray);
+}
+.opp_team .team_img{
+    justify-content: end;
+}
+.opp_team h2, .my_team h2{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--icncolor);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+.opp_team h2{
+    text-align: right;
+    margin: 0 5px 5px 0;
+}
+.my_team h2{
+    text-align: left;
+    margin: 0 0 5px 5px;
+}
+
+.result{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.result p{
+    text-align: center;
+    font-weight: 600;
+    padding-top: 20px;
+}
+.won{
+    color: var(--ltgreen);
+}
+.loss{
+    color: var(--red);
+}
+
+/* past result css work start */
+.result_nav{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: end;
+    /* margin-top: -20px; */
+    z-index: -1;
+    border-bottom-left-radius: 20px ;
+    border-bottom-right-radius: 20px ;
+    /* background-color: var(--offwhite); */
+}
+.result_nav button{
+    font-size: 14px;
+    padding: 5px 15px;
+    margin: 0px 5px;
+    background: none;
+    transition: .5s;
+}
+.playersbtn, .detailsbtn{
+    border: none;
+}
+
+.mvpbtn{
+    border: none;
+    border-bottom: 2px solid var(--logoorange);
+    color: var(--logoorange);
+}
+
+.match_det, .mvp_det, .past_match_players, .past_match_details{
+    width: 100%;
+    height: 100%;
+    background-color: #f0f0f096;
+    overflow-y: scroll;
+}
+
+.mvp_det .past_players_list  caption, .past_match_players h3, .past_match_details h3{
+    font-size: 18px;
+    font-weight: 600;
+    padding: 20px 0;
+    margin: 0;
+    text-align: center;
+
+}
+table.past_players_list{
+    width: 95%;
+    margin: 0 auto;
+}
+
+.past_mvps{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 5px;
+    margin-left: auto;
+    margin-right: auto;
+    /* box-shadow: 0 0px 10px 0px rgba(0,0,0,0.1); */
+}
+.past_player_img{
+    width: 40px;
+    height: 40px;
+    margin: 0 10px 0 0px;
+}
+.past_player_img img{
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border: 1.3px solid var(--icncolor);}
+table.past_players_list tr td img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1.3px solid var(--icncolor);
+}
+table.past_players_list tr:nth-child(1){
+    /* border: none; */
+}
+table.past_players_list tr{
+    /* border-bottom: 2px solid #cdcdd1; */
+}
+table.past_players_list tr th{
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--icncolor);
+}
+table.past_players_list tr td{
+    height: 55px;
+    display: flex;
+    align-items: center;
+    /* vertical-align: bottom; */
+    /* text-align: center; */
+}
+table.past_players_list tr{
+    display: grid;
+    grid-template-columns: 20% 60% 20%;
+}
+
+.players_name{
+    font-size: 18px;
+    font-weight: 600;
+}
+.players_team_name{
+    font-size: 18px;
+}
+
+/* past players members start */
+.members{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.members h4{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--drakgray);
+    text-align: center;
+    margin: 0;
+}
+.my_team_players{
+    border-right: 1px solid var(--icncolor);
+}
+.opp_team_players{
+    border-left: 1px solid var(--icncolor);
+}
+.players{
+    /* width: 100%; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    margin: 10px 15px;
+    /* border-bottom: 1.3px solid var(--icncolor); */
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+    /* box-shadow: 0 0px 10px 0px rgba(0,0,0,0.1); */
+
+}
+.players img{
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    margin: 0 5px;
+    border: 1.3px solid var(--icncolor);
+
+}
+
+.players p{
+    font-size: 18px;
+    font-weight: 600;
+    /* color: var(--drakgray); */
+}
+
+/* past players members end */
+
+/* past match details start */
+.past_match_details .details{
+width: 100%;
+}
+.past_match_details .details div{
+    width: 100%;
+    height: 55px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    /* justify-content: center; */
+    align-items: center;
+}
+.past_match_details .details div i{
+    font-size: 18px;
+    color: var(--drakgray);
+    margin: 0 10px;
+}
+.past_match_details .details div p{
+    font-size: 18px;
+    font-weight: 500;
+    /* color: var(--drakgray); */
+
+}
+
+.past_player_tr{
+    /* border-bottom: 1px solid var(--icncolor); */
+    box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+}
+
+/* past result css work end */

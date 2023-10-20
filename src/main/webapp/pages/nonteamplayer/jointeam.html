@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Join team</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+	integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
+	integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
+	crossorigin="anonymous" referrerpolicy="no-referrer">
+<link rel="stylesheet" href="../../assets/css/overall.css">
+<link rel="stylesheet" href="../../assets/css/popup-team-profile.css">
+<link rel="stylesheet" href="../../assets/css/commonheader.css">
+<style>
+/* Style for the "Load More" button */
+.load-more {
+  text-align: center;
+  padding: 20px;
+}
+
+.load-more-button {
+  background-color: #ff8908; /* Change to your desired button color */
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.load-more-button:hover {
+  background-color: #ff8908; /* Change to your desired hover color */
+}
+
+/* Style for the loading spinner */
+.loading-spinner {
+  display: none; /* Initially hidden */
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #ff8908; /* Change to your desired spinner color */
+  width: 30px;
+  height: 30px;
+  animation: spin 2s linear infinite;
+  margin: 0 auto;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+</style>
+</head>
+
+<body>
+	<!-- header start -->
+	<header>
+		<a onclick="previousPage()"> <i class="fa-solid fa-arrow-left"></i>
+		</a>
+		<h1>Join with team</h1>
+	</header>
+	<!-- header end -->
+	<!-- main start -->
+	<section class="jointeammain">
+		<div class="dummy-div"></div>
+		<div class="content-subheader searchbardiv">
+				<div class="searchbar">
+					<input type="search" id="search" placeholder="Search team or area name" title="Use only alphabet(abc...z) minimum use 2 charcter" pattern="^[a-zA-Z][a-zA-Z\s]{1,20}$" autocomplete="off"> <i id="search-icon"
+						class="fa-solid fa-magnifying-glass"></i>
+				</div>
+			</div>
+		<div style="height: auto;" class="content join-team-content">
+
+			
+
+		</div>
+		<div id="load_more" class="load-more">
+			<button class="load-more-button" onclick="loadMoreFun()">Load more</button>
+			<div class="loading-spinner"></div>
+		</div>
+	</section>
+	<!-- main end -->
+	<!-- popup content start -->
+	<div class="popup" id="popup">
+
+		<div class="popup-team-content">
+			<button class="backbtn" type="button" onclick="ClosePopup()">
+				<i class="fa-regular fa-circle-xmark"></i>
+			</button>
+			<h2></h2>
+			<div class="popup-team-area">
+				<div>
+					<i class="fa-solid fa-location-dot"></i>
+					<p class="popup_area_name"></p>
+				</div>
+				<div>
+					<i class="fa-regular fa-clock"></i>
+					<p class="popup_since"></p>
+				</div>
+			</div>
+
+			<h3 class="popup_member_count"></h3>
+			<div class="players-list"></div>
+
+			<!-- <a href="../profile/teammember.html"> -->
+			<button type="button" class="profile-view-btn">VIEW PROFILE</button>
+			<!-- </a> -->
+		</div>
+	</div>
+
+	<!-- popup content end -->
+	<!--script for popup start-->
+	<script
+		src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
+	<script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
+	<script src="../../assets/js/joinTeam.js"></script>
+</body>
+</html>

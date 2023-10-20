@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+
+:root {
+    --offwhite: #f0f0f0;
+    --white: #ffffff;
+    --red: #96352c;
+    --ltgreen: #14b393;
+    --fntwight: #f7f7f7;
+    --icncolor: #72787f;
+    --drakgray: #2a373f;
+    --logoorange: #ff8908;
+
+  }
+* a{
+    text-decoration: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+}
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--offwhite);
+    font-family: 'Source Sans Pro', sans-serif;
+}  
+/* header start */
+header{
+    width: 100%;
+    height: 10vh;
+    background-color: var(--logoorange);
+    background-image: url(../images/new-banner-bg.png);
+    background-repeat: no-repeat;
+    background-size: 70% 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: initial;
+}
+header div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: initial;
+}
+header div{
+    height: 60%;
+}
+header i{
+    font-size: 1.3rem;
+    margin: 10px ;
+    color: var(--fntwight);
+    font-weight: 100;
+}
+header p{
+    font-size: 1rem;
+    margin: 10px 0px 0px 0px;
+    color: var(--fntwight);
+    font-weight: 600;
+}
+
+/* header end */
+/* main start */
+main{
+    width: 100%;
+    height: 90vh;
+    margin: 0;
+    overflow-y: scroll;
+}
+/*  upper profile start  */
+.profilediv{
+    width: 100%;
+    height: 15%;
+    background-color: var(--white);
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: initial;
+}
+
+.profileimagediv{
+    width: 30%;
+}
+
+.profileimagediv img {
+    position: absolute;
+    top: 60px;
+    left: 15px;
+    width: 20%;
+    max-width: 140px;
+    min-width: 100px;
+    height: 5%;
+    min-height: 105px;
+    max-height: 110px;
+    border-radius: 80%;
+    border: 2px solid var(--white);
+}
+.profiledetailsdiv{
+    width: 70%;
+    padding-left: 20px;
+}
+.profiledetailsdiv h1{
+    margin: 0;
+    font-size: 22px;
+}
+.profiledetailsdiv p{
+    margin: 0;
+    font-size: 16px;
+    color: var(--icncolor);
+}
+.profiledetailsdiv i{
+    font-size: 16px;
+    color: var(--ltgreen);
+    margin-right: 10px;
+}
+.profiledetailsdiv div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+/* upper profile end */
+
+/* My profile start */
+
+.myprofilediv{
+    width: 100%;
+    background-color: var(--white);
+}
+.myprofilehead{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;   
+}
+.myprofilehead p{
+    font-size: 18px;
+    font-weight: 600;
+    margin-left: 10px;
+}
+.myprofilehead a{
+    text-decoration: none;
+    color: var(--ltgreen);
+    font-size: 18px;
+    font-weight: 600;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+
+.myprofiledetails{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    padding-left: 10px;
+    margin-bottom: 25px;
+}
+.myprofiledetails div{
+    margin-top: 30px;
+}
+.myprofiledetails p:nth-child(1){
+    color: var(--icncolor);
+    font-size: 14px;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: 0;
+}
+.myprofiledetails p:nth-child(2){
+    color: #000000;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 10px 0px 0px 0px;
+}
+
+.myprofilerange{
+    width: 100%;
+    text-align: center;
+}
+.myprofilerange div.range_div{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center; 
+}
+.myprofilerange div.range_div div.range_back{
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--drakgray);
+}
+.myprofilerange div.range_div div.range_back div.range_cover{
+    margin-left: 0;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--ltgreen);
+}
+.range-label{
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+.myprofilerange input{
+    width: 80%;
+    
+}
+.myprofilerange p{
+    color: var(--ltgreen);
+    font-size: 16px;
+    font-weight: 600;
+    padding-bottom: 20px;
+}
+
+/*  My profile end */
+.logout{
+    width: 100%;
+    text-align: center;
+}
+
+.logout button{
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0px 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--icncolor);
+    border: 1.5px solid var(--icncolor);
+    border-radius: 3px;
+}
+body div.big-screen-profile-div{
+    width: 100%;
+}
+/* main end */
+
+
+@media only screen and (min-width: 900px){
+    body div.big-screen-profile-div{
+        width: 900px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    }
+    body{
+        /* background-color: #14b393; */
+    }
+}
