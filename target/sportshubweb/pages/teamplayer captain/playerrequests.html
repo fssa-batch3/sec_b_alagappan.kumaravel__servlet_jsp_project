@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Players request</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/overall.css">
+        <link rel="stylesheet" href="../../assets/css/commonheader.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header>
+            <a onclick="previousPage()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1>Players Request</h1>
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <section class="players-request-main"> 
+            <!-- <div class="searchbardiv content-subheader">
+                <div class="searchbar">
+                <input type="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                </div> -->
+            <div class="players-request-content">
+ 
+            </div>	
+
+        </section>
+        <!-- main end -->
+        <!-- popup content start -->
+        <div class="popup" id="popup">
+		
+            <div class="popup-content">
+                <button class="backbtn" type="button" onclick="ClosePopup()">
+                    <i class="fa-regular fa-circle-xmark"></i>
+                </button>
+                <img class="player_popup_image" alt="">
+                <div class="player-name">
+                    <h3></h3>
+                    <p></p>
+                </div>
+                <div class="player-address">
+				
+                    <div>
+                        <i class="fa-solid fa-cake-candles"></i>
+                        <p class="player_age"></p>
+                    </div>
+
+                    <div>
+                        <i class="fa-solid fa-location-dot"></i>
+                        <p class="area_name_para"></p>
+                    </div>
+                    <div>
+                        <i class="fa-solid fa-circle-info"></i>
+                        <p class="player_about"></p>
+                    </div>
+                </div>
+
+                <button class="profilebtn">VIEW PROFILE</button>
+            </div>
+        </div>
+
+        <!-- popup content end -->
+        <!--script for popup start-->
+        <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        	<script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
+        
+        <script>
+function ClosePopup() {
+  popup.classList.remove("open-popup");
+}
+function previousPage() {
+  window.history.go(-1);
+}
+</script>
+        <script src="../../assets/js/player_response.js"></script>
+
+        <!--script for popup start-->
+    </body>
+</html>

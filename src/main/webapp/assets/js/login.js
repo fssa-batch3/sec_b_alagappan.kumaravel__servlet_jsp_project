@@ -2,6 +2,8 @@ const { origin } = window.location;
 
 const startPoint = "http://localhost:8080/sportshubweb/";
 
+const loadingPage = document.getElementById("load_body");
+
 async function findnumber(value) {
   let matchPhonenum = 0;
 
@@ -42,12 +44,13 @@ async function signUp_1(e) {
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   const confrim_password = document.getElementById("confirm_password").value;
-
+  loadingPage.style.display = 'flex';
   const matchPhonenum = await findnumber(phonenumber);
 
   let temp;
 
   if (matchPhonenum === 1) {
+	  loadingPage.style.display = 'none';
     temp = document.querySelector(".wrong_password").innerHTML =
       "This number already have account.  ";
     return temp;
@@ -55,12 +58,14 @@ async function signUp_1(e) {
 
   // for show exception in alert 
   if (matchPhonenum === 2) {
+	  loadingPage.style.display = 'none';
     return;
   }
 
   const wrong_password = password !== confrim_password;
 
   if (wrong_password) {
+	  loadingPage.style.display = 'none';
     temp = document.querySelector(".wrong_password").innerHTML =
       "Password not match.  ";
     return temp;
@@ -78,7 +83,7 @@ async function signUp_1(e) {
   document.querySelector("form").reset();
 
   location.href = `${origin}/sportshubweb/pages/login&signup/signup2.html`;
-
+	loadingPage.style.display = 'none';
 }
 
 function validation(password) {
@@ -191,6 +196,8 @@ async function signUp_2(e) {
   const gender = document.getElementById("gender").value;
   const area = document.getElementById("area").value;
   const district = document.getElementById("distric").value;
+  
+  loadingPage.style.display = 'flex';
   // const create_date = moment();
 
   // create user id for new person start
@@ -223,21 +230,33 @@ console.log(date_of_birth, gender)
   }).then(response => {
     console.log(response)
   if(!response.ok){
+	loadingPage.style.display = 'none';
     throw new Error(response.message);
+    
   }
   return response.json()}
   ).then(data => {
     if (data.error) {
-      Notify.error("Register failed: " + data.error);
+		loadingPage.style.display = 'none';
+			Swal.fire({
+  icon: 'error',
+  title: 'Register failed',
+  text: data.error
+})
     } else {
+		loadingPage.style.display = 'none';
       if(data.status == 200){
         const userId = data.data;
         sessionStorage.setItem('playerId', userId);
-        Notify.success("login successful");
         window.location.href = `${origin}/sportshubweb/home?player_id=${userId}`;
       }else{
-		  alert(data.message)
-        Notify.error(data.message);
+		  document.querySelector("#addressSearch").setAttribute("required", "required")
+	Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: data.message
+})
+
       }
 
     }
@@ -258,7 +277,7 @@ async function signIn(e) {
   e.preventDefault();
   const phonenumber = document.getElementById("phonenumber").value;
   const password = document.getElementById("password").value;
-
+	loadingPage.style.display = 'flex';
   // let user_detail = JSON.parse(localStorage.getItem('user_detail')) || [];
 
   const response = axios.get(`${startPoint}/log_in`, {
@@ -271,14 +290,16 @@ async function signIn(e) {
     await response.then((res) => {
 		console.log(res)
       if (res.data.data > 0 && res.data.status == 200) {
-
+		
         sessionStorage.setItem("playerId", res.data.data);
         window.location.href = `${origin}/sportshubweb/home?player_id=${res.data.data}`;
       }
       if(res.data.status == 500 && res.data.data == -1){
+		  loadingPage.style.display = 'none';
 		  alert(res.data.message)
 	  }
 	  if(res.data.status == 500 && res.data.data == 0){
+		  loadingPage.style.display = 'none';
 		  document.getElementById("error_msg").innerHTML = "Incorrect phone number or password";
 	  }
 	  
@@ -439,6 +460,7 @@ function logOut() {
 }
 
 function backBtnHome() {
+	loadingPage.style.display = 'flex';
 	const userId = sessionStorage.getItem("playerId")
   window.location.href = `${origin}/sportshubweb/home?player_id=${userId}`;
 }

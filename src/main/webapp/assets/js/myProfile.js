@@ -6,7 +6,10 @@ const endpoint = "player/detail?player_id=";
 
 const user_api_id = JSON.parse(sessionStorage.getItem("playerId"));
 
+loadingPage.style.display = 'flex';
+
 if (user_api_id === null) {
+	loadingPage.style.display = 'none';
   window.location.href = `${origin}/sportshubweb/`;
 }
 
@@ -15,6 +18,7 @@ if (user_api_id !== null) {
     const person_data = res.data;
 	console.log(person_data)
     myProfile(person_data.data);
+    loadingPage.style.display = 'none';
   });
 }
 
@@ -100,5 +104,6 @@ async function myProfile(person_data) {
 
 // for range value end
 function moveProfile() {
+	
   window.location.href = `../profile/playerprofile.html?player_id=${user_api_id}`;
 }

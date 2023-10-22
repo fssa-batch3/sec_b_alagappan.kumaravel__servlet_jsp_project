@@ -99,7 +99,7 @@ searchButton.addEventListener("click", async () => {
 		await pagination(mergedArray);
 		loadingSpinner.style.display = 'none';
 		if (mergedArray.length == 0) {
-			document.querySelector(".join-team-content").innerHTML = "No teams available";
+			document.querySelector(".join-team-content").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No teams available</div>';
 		}
 
 	}

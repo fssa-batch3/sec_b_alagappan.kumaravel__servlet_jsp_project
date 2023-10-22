@@ -1,0 +1,116 @@
+/* team profile popup start */
+
+.popup-team-content{
+    position: relative;
+    width: 340px;
+    background-color: var(--white);
+}
+
+.popup-team-content h2{
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--logoorange);
+    margin-left: 15px;
+}
+.players-list {
+    width: 90%;
+    height: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-top: 1.5px solid var(--offwhite);
+    overflow-y: scroll;
+}
+.players-list div{
+    display: grid;
+    grid-template-columns: 15% 85%;
+    align-items: center;
+    border-top: 1.5px solid var(--offwhite);
+}
+
+img.players-list-image {
+    width: 70%;
+    height: 35px;
+    border: 1.5px solid var(--icncolor);
+    border-radius: 100%;
+}
+.players-list div p{
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--drakgray);
+}
+
+.profile-view-btn{
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--ltgreen);
+    border: none;
+}
+
+.popup-team-area{
+    width: 100%;
+}
+.popup-team-area div{
+    display: grid;
+    grid-template-columns: 5% 95%;
+    align-items: center;
+}
+.popup-team-area div p{
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px 0 10px 15px;
+    color: var(--icncolor);
+}
+
+.popup-team-area div i{
+    font-size: 14px;
+    margin: 0;
+    padding: 10px;
+    color: var(--icncolor);
+}
+
+.popup-team-content h3{
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    padding: 10px ;
+    color: var(--icncolor);
+    position: sticky;
+    top: 0;
+    background-color: var(--white);
+    border-top: 1.5px solid var(--offwhite);
+}
+/* team profile popup end */
+
+
+
+/* join team page big screen start */
+
+
+
+@media only screen and (min-width: 900px){
+
+    /* players profile popup start */
+
+.popup-team-content{
+    width: 100%;
+    height: 100%;
+    margin-top: 20px;
+    background-color: var(--white);
+    position: relative;
+    
+}
+.players-list{
+    height: 70%;
+}
+
+
+  } 
+  /* join team page big screen end */
+  

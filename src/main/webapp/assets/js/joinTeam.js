@@ -11,6 +11,7 @@ const my_id = JSON.parse(sessionStorage.getItem("playerId"));
 const { origin } = window.location;
 
 const loadMore = document.getElementById("load_more");
+const loadingPage = document.getElementById("load_body");
 
 const searchInput = document.getElementById("search");
 
@@ -52,8 +53,11 @@ function searchTeams(searchString) {
 searchButton.addEventListener("click", async () => {
 	const pattern = /^[a-zA-Z][a-zA-Z\s]{1,20}$/;
 	const inputValue = searchInput.value;
-	if (!pattern.test(inputValue)) {
-		alert(searchInput.getAttribute('title'));
+	if (!pattern.test(inputValue)) {	
+	Swal.fire({
+ 	 title: 'Please',
+  	text: 'Search with more that 2 characters'
+})
 	} else {
 		loadMoreButton.style.display = 'none';
 		document.querySelector(".join-team-content").innerHTML = "";
@@ -68,7 +72,7 @@ searchButton.addEventListener("click", async () => {
 		await pagination(mergedArray);
 		loadingSpinner.style.display = 'none';
 		if(mergedArray.length == 0){
-			document.querySelector(".join-team-content").innerHTML = "No teams available";
+			document.querySelector(".join-team-content").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No teams available</div>';
 		}	
 		
 	}
@@ -207,7 +211,7 @@ function pagination(requested_teams) {
 				"teamId": team_unique_id
 			}
 
-
+			loadingPage.style.display = 'flex';
 			try {
 				const response = await axios.post("http://localhost:8080/sportshubweb/team/team_request_create", new URLSearchParams(user_data).toString(), {
 					headers: {
@@ -222,24 +226,37 @@ function pagination(requested_teams) {
 					if (result.status === 200) {
 						requested_team_id.push(team_unique_id);
 						document.querySelector(".join-team-content").innerHTML = "";
+						loadingPage.style.display = 'none';
 						await pagination(listOfTeam)
-						Notify.success("Request created successfully");
+						
 					} else {
 						// Handle error if needed
 						console.error("Failed to delete:", result.message);
-						Notify.error(result.message);
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: result.message
+						})
 					}
 				} else {
 					// Handle HTTP error
 					console.error("HTTP Error:", response.statusText);
-					Notify.error(response.statusText);
+					Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: response.statusText
+						})
 				}
 			} catch (error) {
 				// Handle network or other errors
 				console.error("Error:", error);
-				Notify.error(error.message);
+				Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: error.message
+						})
 			}
-
+			
 		});
 	});
 	
@@ -251,7 +268,7 @@ const bookCovers = document.querySelectorAll(".popup-name");
 bookCovers.forEach((each) => {
 	each.addEventListener("click", async () => {
 		const click_id = each.dataset.id;
-
+		loadingPage.style.display = 'flex';
 		console.log(click_id);
 
 		const person_data = await getDataById("team/detail?teamId=", click_id);
@@ -296,7 +313,9 @@ bookCovers.forEach((each) => {
 		const popup_viewprofile = document.querySelector(
 			"button.profile-view-btn"
 		);
+		
 		popup_viewprofile.setAttribute("data-viewid", click_id);
+		loadingPage.style.display = 'none';
 	});
 });
 
@@ -312,8 +331,7 @@ popup_viewprofile.addEventListener("click", () => {
 async function joinTeamPageLoad() {
 
 	loadMoreButton.style.display = 'none';
-	loadingSpinner.style.display = 'block';
-
+	loadingPage.style.display = 'flex';
 	const players_request = await getDataById("team/player_request?playerId=", my_id);
 
 
@@ -333,6 +351,7 @@ async function joinTeamPageLoad() {
 	if (listOfTeam.length == 5) {
 		loadMoreButton.style.display = 'inline';
 	}
+	loadingPage.style.display = 'none';
 }
 
 
@@ -364,7 +383,9 @@ function ClosePopup() {
 	popup.classList.remove("open-popup");
 }
 function previousPage() {
+	loadingPage.style.display = 'flex';
 	window.history.go(-1);
+	loadingPage.style.display = 'none';
 }
 
 

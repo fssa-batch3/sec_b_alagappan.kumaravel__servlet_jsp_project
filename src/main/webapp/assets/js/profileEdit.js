@@ -2,12 +2,14 @@
 
 const user_api_id = JSON.parse(sessionStorage.getItem("playerId"));
 
+loadingPage.style.display = 'flex';
 const endpoint = "player/detail?player_id=";
 
   axios.get(`http://localhost:8080/sportshubweb/${endpoint}${user_api_id}`).then((res) => {
     const person_data = res.data;
 
    showInEdit(person_data.data);
+   loadingPage.style.display = 'none';
   });
 
 

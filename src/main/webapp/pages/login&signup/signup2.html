@@ -19,9 +19,18 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="../../assets/css/signup2.css">
         <link rel="stylesheet" href="../../assets/css/footerloginsignup.css">
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
     </head>
 
     <body>
+    <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <main>
             <div id="content">
                 <div class="border">
@@ -42,13 +51,21 @@
                                     <option>Others</option>
                                 </select>
                             </div>
+                            
+                            <div name="address" id="address-form" method="get">
+                                <label>Area & District</label>
+                                <input id="addressSearch" type="text" placeholder="Search and enter your area" required onchange="display()">
+                            </div>
+                            
+                            <div id="area_view" style="display:none;">
                             <div>
                                 <label>Area</label>
-                                <input id="area" type="text" placeholder="Eg: annanagar" value="Aminjikarai" title="Use only alphabet(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required>
+                                <input id="area" type="text" readonly style="border: none; border-bottom: 1px solid #72787f;">
                             </div>
                             <div>
                                 <label>District</label>
-                                <input id="distric" type="text" placeholder="Eg: chennai" value="chennai" title="Use only alphabet(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required>
+                                <input id="distric" type="text" readonly style="border: none; border-bottom: 1px solid #72787f;">
+                            </div>
                             </div>
 				
                             <button class="nextbtn" type="submit">Sign up & Lets Rock</button>
@@ -88,17 +105,103 @@
                 <p>Copyright © 2019 - 2022 Sportshub - Website Designed By Alagappan</p>
             </div>
         </footer>
+        <script src="../../assets/js/login.js"></script>
+        <script>
+        loadingPage.style.display = 'flex';
+        </script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/uuid@8.3.2/dist/umd/uuidv4.min.js"></script>
         <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/gh/suryaumapathy2812/notify__js/notify.js"> </script>
-        <script src="../../assets/js/login.js">
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
 
-	</script>
+	<script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script>
         <script>
         document.querySelector(".signup2_form").addEventListener("submit", (e) => {
   signUp_2(e);
 });
+        
+        let autocomplete;
+        let address1Field;
+
+        function initAutocomplete() {
+            address1Field = document.querySelector("#addressSearch");
+
+            console.log(address1Field)
+            
+            autocomplete = new google.maps.places.Autocomplete(address1Field, {
+                componentRestrictions: { country: ["in"] },
+                fields: ["address_components", "geometry"],
+                types: ["geocode"],
+            });
+            address1Field.focus();
+            autocomplete.addListener("place_changed", fillInAddress);
+        }
+        function fillInAddress() {
+            const place = autocomplete.getPlace();
+            console.log(place)
+            let address1 = "";
+            let postcode = "";
+            let localityName;
+            let administrativeAreaName;
+            let subLocalityName;
+            let subLocalityName2;
+            for (const component of place.address_components) {
+                const componentType = component.types[0];
+                switch (componentType) {
+                    case "street_number": {
+                        address1 = `${component.long_name} ${address1}`;
+                        break;
+                    }
+                    case "route": {
+                        address1 += component.short_name;
+                        break;
+                    }
+                    case "postal_code": {
+                        postcode = `${component.long_name}${postcode}`;
+                        break;
+                    }
+                    case "postal_code_suffix": {
+                        postcode = `${postcode}-${component.long_name}`;
+                        break;
+                    }
+                    case "locality": {
+                        localityName = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_3": {
+                        subLocalityName2 = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_1": {
+                        subLocalityName = component.long_name;
+                        break;
+                    }
+                    case "administrative_area_level_3":
+                        administrativeAreaName = component.long_name;
+                        document.querySelector("#distric").value = component.long_name;
+                        break;
+                }
+            }
+            if (localityName === administrativeAreaName) {
+                document.querySelector("#area").value = subLocalityName;
+            }
+            else {
+                document.querySelector("#area").value = localityName;
+                
+            }
+            address1Field.value = address1;
+            address1Field.focus();
+            address1Field.removeAttribute("required")
+        }
+        // window.initAutocomplete = initAutocomplete;
+        
+        loadingPage.style.display = 'none';
+        
+        function display(){
+        	document.getElementById("area_view").style.display = 'block';
+        }
     </script>
     </body>
 

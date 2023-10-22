@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notification</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/notification.css">
+    </head>
+
+    <body>
+        <!-- header start -->
+        <header>
+            <a onclick="previousPage()">
+                <i class="fa-solid fa-arrow-left"></i>
+            </a>
+            <h1>Notifications</h1>
+            <div class="onoffswitch">
+                <label class="switch">
+                    <input type="checkbox" checked>
+                    <span class="slider round"></span>
+                </label>
+                <p>On/Off</p>
+            </div>
+        </header>
+        <!-- header end -->
+        <!-- main start -->
+        <main>
+            <h2>Today</h2>
+            <div class="nt-details">
+                <div>
+                    <i class="fa-regular fa-handshake"></i>
+                </div>
+                <div>
+                    <h3>
+                        <b>Join to team:</b> Your request was accepted by Asgard
+                    </h3>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <p>50 minites ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Yestarday</h2>
+            <div class="nt-details">
+
+                <div>
+                    <i class="fa-solid fa-reply"></i>
+                </div>
+                <div>
+                    <h3>
+                        <b>Match invitation:</b> Your invitation was accepted by Avengers11
+                    </h3>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <p>1 day ago</p>
+                    </div>
+                </div>
+            </div>
+
+            <h2>This Week</h2>
+            <div class="nt-details">
+                <div>
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+                <div>
+                    <h3>
+                        <b>Open for player:</b> Guptil sent join request to your team
+                    </h3>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <p>2 days ago</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nt-details">
+                <div>
+                    <i class="fa-regular fa-envelope"></i>
+                </div>
+                <div>
+                    <h3>
+                        <b>Match Request:</b> Wonder11 sent match request to your team
+                    </h3>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <p>4 days ago</p>
+                    </div>
+                </div>
+            </div>
+            <div class="nt-details">
+                <div>
+                    <i class="fa-solid fa-envelope-open-text"></i>
+                </div>
+                <div>
+                    <h3>
+                        <b>Match Request:</b> Your neighbour sent match request to your team
+                    </h3>
+                    <div>
+                        <i class="fa-regular fa-clock"></i>
+                        <p>4 days ago</p>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+        <script>
+	function previousPage() {
+	  window.history.go(-1);
+}
+</script>
+        <!-- main end -->
+    </body>
+</html>

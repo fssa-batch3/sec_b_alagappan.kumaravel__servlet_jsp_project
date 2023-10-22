@@ -58,7 +58,7 @@ searchButton.addEventListener("click", async () => {
 		await uppendData(searchTeam);
 		loadingSpinner.style.display = 'none';
 		if(searchTeam.length == 0){
-			document.querySelector(".area-background-color").innerHTML = "No area available";
+			document.querySelector(".join-team-content").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No area available</div>';
 		}	
 		
 	}

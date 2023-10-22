@@ -10,6 +10,7 @@ const my_team_id = JSON.parse(urlParams.get("team_id"));
 
 const my_id = JSON.parse(sessionStorage.getItem("playerId"));
 
+const loadingPage = document.getElementById("load_body");
 
 
 async function getDataById(endpoint, user_api_id) {
@@ -58,7 +59,7 @@ async function getRelationDataByPlayer(endpoint, user_api_id) {
 }
 async function exit() {
 	if (confirm(`Do you want to Exit from this team ?`)) {
-		
+		loadingPage.style.display = 'flex';
 		  const user_data = {
 	    		"playerId": my_id,
 	    		"teamId": my_team_id
@@ -79,19 +80,37 @@ async function exit() {
 			window.location.href = "http://localhost:8080/sportshubweb/home?player_id="+my_id;
 				} else {
 					// Handle error if needed
+					loadingPage.style.display = 'none';
 					console.error("Failed to delete:", result.message);
-					alert(result.message);
+					
+							Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: result.message
+						})
 				}
 			} else {
 				// Handle HTTP error
+				loadingPage.style.display = 'none';
 				console.error("HTTP Error:", response.statusText);
-				alert(response.statusText);
+				Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: response.statusText
+						})
 			}
 		} catch (error) {
 			// Handle network or other errors
+			loadingPage.style.display = 'none';
 			console.error("Error:", error);
-			alert(error.message);
+			Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: error.message
+						})
 		}
+		
+		loadingPage.style.display = 'none';
 
 	}
 }
@@ -141,7 +160,9 @@ function member() {
 
 
 function teamEdit() {
+	loadingPage.style.display = 'flex';
 	window.location.href = `../my team/myteamedit.html?team_id=${my_team_id}`;
+	loadingPage.style.display = 'none';
 }
 
 document.querySelector(".edit_team").addEventListener("click", teamEdit);
@@ -177,6 +198,8 @@ function renderPlayer(player, captain, whatsapp, me, age) {
 
 
 async function teamPageLoad() {
+	loadingPage.style.display = 'flex';
+	
 	const teamProfile = await getDataById("team/detail?teamId=", my_team_id);
 	
 	const request_list = await getDataById("my_match/team?teamId=", my_team_id);
@@ -283,6 +306,8 @@ async function teamPageLoad() {
 
 	const teamMemberCount = team_players_list.length;
 	document.querySelector(".member").innerHTML = teamMemberCount;
+	
+	loadingPage.style.display = 'none';
 }
 
 function previousPage() {

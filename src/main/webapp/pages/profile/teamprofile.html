@@ -11,11 +11,24 @@
         <link rel="stylesheet" href="../../assets/css/profileview.css">
         <link rel="stylesheet" href="../../assets/css/update_score.css">
         <link rel="stylesheet" href="../../assets/css/roundslider.css">
-
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
+        
+	<style>
+	.button_underline{
+	width : 33.33%;
+	}
+	</style>
     </head>
 
     <body>
-
+<div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <!-- header start -->
         <header>
             <!-- <img class="bgimg" src="../../assets/images/team1profile.jpg" alt="backgroundimage"> -->
@@ -267,7 +280,9 @@
         <!-- main end -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
         <script src="../../assets/js/roundslider.js"></script>
         <script type="module" src="../../assets/js/teamprofile.js"></script>
+        
     </body>
 </html>

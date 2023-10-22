@@ -1,0 +1,1392 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Boogaloo&family=Press+Start+2P&family=Righteous&family=Rubik+Vinyl&family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+:root {
+    --offwhite: #f0f0f0;
+    --white: #ffffff;
+    --red: #96352c;
+    --ltgreen: #14b393;
+    --fntwight: #f7f7f7;
+    --icncolor: #72787f;
+    --drakgray: #2a373f;
+    --logoorange: #ff8908;
+
+  }
+
+body{
+    padding: 0;
+    margin: 0;
+    background-color: var(--offwhite);
+}  
+* a{
+    text-decoration: none;
+}
+/* display none for all option start */
+
+
+
+/* display none for all option start */
+header {
+    width: 100%;
+    height: 65px;
+    background-color: var(--white);
+    display: grid;
+    grid-template-rows: 100%;
+    grid-template-columns: 15% 55% 15% 15%;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+header.headerdiv{
+    grid-template-columns: 15% 60% 10%;
+}
+
+header i{
+    font-size: 1.3rem;
+    color: var(--icncolor);
+    text-align: center;
+}
+.logodiv{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+}
+header .logo{
+    width: 2rem;
+    height: 2rem;
+    margin-left: 1rem;
+}
+.logodiv p{
+    font-family: 'Roboto Slab', serif;
+    font-weight: 400;
+    margin: 0 0 0 3px;
+}
+.laptop-header{
+    display: none;
+}
+
+/* header end */
+
+/* Jointeam search bar start */
+.jointeammain{
+    width: 100%;
+    height: 100vh;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.searchbardiv{
+    position: sticky;
+    top: 0;
+    z-index: 11;
+}
+.searchbar{
+    width: 90%;
+    margin: 10px 0;
+    border: 1px solid var(--drakgray);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+.searchbar input{
+    width: 90%;
+    height: 100%;
+    font-size: 16px;
+    padding: 8px 0 8px 0;
+    border: none;
+}
+.searchbar input:focus{
+    outline: none;
+}
+.searchbar i{
+    font-size: 1.4rem;
+    
+}
+.select-link{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--ltgreen);
+}
+
+.sidebar-navtable a{
+    text-decoration: none;
+}
+/* Jointeam search bar end */
+/* sandwich button start */
+/*  transition work start */
+.sandwich{
+    font-family: 'Source Sans Pro', sans-serif;
+    position: fixed;
+    width: 80%;
+    height: 100%;
+    background-color: var(--white);
+    top: 0px;
+    left: -80%;
+    transition: all .5s ease;
+    z-index: 1;
+    overflow-y: scroll;
+}
+*::-webkit-scrollbar {
+    display: none;
+}
+#check{
+    display: none;
+}
+label #btn, label #cancel{
+    position: absolute;
+    cursor: pointer;
+}
+label #btn {
+    left: 10px;
+    top:2%;
+    font-size: 1.3rem;
+    padding: 6px 12px;
+    transition: all .5s;
+}
+#cancel{
+    z-index: 1111;
+    right: 8%;
+    top: 16px;
+    color: var(--offwhite);
+    font-size: 1.7rem;
+    transition: all .5s ease;
+}
+/* 
+.sandwich_label{
+    position: absolute;
+    z-index: 1111;
+    width: 100px;
+    height: 100px;
+    right: 0%;
+    top: 0px;
+    background-color: var(--fntwight);
+} */
+#check:checked~.sandwich{
+    left: 0;
+}
+#check:checked ~ header{
+    opacity: 0.3;
+}
+#check:checked ~ main{
+    opacity: 0.3;
+}
+#check:checked ~ footer{
+    opacity: 0.3;
+}
+#check:checked ~ label #btn{
+    left: 80%;
+    opacity: 0;
+    pointer-events: none;
+}
+#check:checked ~ label #cancel{
+    left: 70%;
+}
+/*  transition work end */
+
+.sidebar-profile{
+    width: 100%;
+    height: 20%;
+    background-color: var(--drakgray);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+}
+.playerimagediv{
+    width: 30%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.playerimagediv img{
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+}
+.playerdetailsdiv{
+    width: 70%;
+    height: 100%;
+}
+.playerdetailsdiv h1{
+    font-size: 18px;
+    margin: 30px 0px 0px 0px;
+    color: var(--fntwight);
+}
+
+.playerdetailsdiv p{
+    font-size: 16px;
+    margin: 5px 0px 20px 0px;
+    color: var(--fntwight);
+}
+
+.playerdetailsdiv label{
+    font-size: 14px;
+
+    color: var(--fntwight);
+}
+.playerdetailsdiv input{
+    height: 3px;
+}
+
+
+div.range_div{
+    width: 95%;
+    /* padding-top: 15px; */
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center; 
+}
+div.range_div div.range_back{
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--drakgray);
+}
+div.range_div div.range_back div.range_cover{
+    margin-left: 0;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--ltgreen);
+}
+div.range_div div.range_back_home{
+    width: 80%;
+    height: 6px;
+    border-radius: 3px;
+    background-color: var(--offwhite);
+}
+div.range_div div.range_back_home div.range_cover{
+    margin-left: 0;
+    height: 100%;
+    border-radius: 3px;
+    background-color: var(--ltgreen);
+}
+.range-label{
+    display: inline-block; 
+    margin-left: 10px;
+}
+
+/* sidebar nav start*/
+.sidebar-nav{
+    width: 100%;
+    height: 80%;
+}
+
+.sidebar-nav i{
+    margin: 0px 40px 0px 10px;
+    font-size: 1.3rem;
+    color: var(--icncolor);
+}
+.sidebar-navtable{
+    width: 100%;
+}
+.sidebar-navtable:nth-child(2){
+    border-top:1.5px solid var(--offwhite) ;
+}
+.sidebar-navtable tbody tr td:nth-child(1){
+    width: 25%;
+}
+.sidebar-navtable tbody tr td:nth-child(2) p{
+    font-weight: 600;
+    color: var(--drakgray);
+}
+.sandwich a{
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* sandwich button end */
+/* main start */
+/* main content strat */
+main{
+    width: 100%;
+    height: 92vh;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.content{
+    width: 100%;
+    height: 88%;
+    overflow-y: scroll;
+    background-color: var(--white);
+    margin-top: 15px;
+}
+.content::-webkit-scrollbar {
+    display: none;
+}
+/* main content header start */
+.content-subheader{
+    width: 100%;
+    max-height: 55px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: .3rem;
+}
+.content-subheader h1{
+    font-size: 16px;
+    font-weight: 600;
+    margin-left: 10px;  
+}
+.content-subheader-searchbar{
+    width: 100%;
+    max-height: 55px;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: .3rem;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+/*  main content header end */
+
+/* team detail start */
+.teams{
+    width: 97%;
+    height: 100px;
+    background-color: var(--white);
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+.teams-link{
+    margin-left: auto;
+    margin-right: auto;
+    height: 110px;
+}
+.teamimagediv{
+    width: 20%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+    
+}
+.teamimagediv button{
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    border: none;
+    background-color: var(--white);
+}
+.teamprofile{
+    width: 80%;
+    height: 60%;
+    border-radius: 100px;
+}
+.teamdetaildiv{
+    height: 100%;
+    width: 80%;
+    padding-left: 10px;
+}
+.teamdetaildiv div:nth-child(1){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.teamdetaildiv button:nth-child(1){
+    width: 100%;
+    border: none;
+    background-color: var(--white);
+    border-top-right-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.teamdetaildiv h2{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+}
+.teamdetaildiv p{
+    margin: 0;
+}
+
+
+.teamdetaildiv div:nth-child(1) div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: initial;
+    justify-content: start;
+    margin-right: 10px;
+    
+}
+.teamdetaildiv div:nth-child(1) div:nth-child(2) p{
+    color: #ff8906;
+}
+
+.teamdetaildiv div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: initial;
+    justify-content: start;
+    
+}
+.teamdetaildiv div:nth-child(2) p{
+    font-size: 14px;
+    margin-left: .5rem;
+    color: var(--icncolor);
+}
+.teamdetaildiv div:nth-child(2) i{
+    color: var(--icncolor);
+}
+
+/* team details end */
+/* main content end */
+/* main bottom footer start */
+.bottom-main{
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    padding: 10px 0px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    background-color: var(--white);
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+.bottom-main a{
+    text-decoration: none;
+    color: var(--drakgray);
+    flex-grow: 5;
+    text-align: center;
+}
+.bottom-main i{
+    font-size: 1.5rem;
+    color: var(--icncolor);
+}
+.bottom-main p{
+    font-size: 14px;
+    margin: 0;
+}
+.bottom-two{
+    flex-grow: 5;
+    text-align: center;
+}
+/* main bottom footer end*/
+
+.match-invitation-main{
+    width: 100%;
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+/* home page for existing user start */
+.invitation-content{
+    width: 100%;
+    height: 90%;
+    overflow-y: scroll;
+    background-color: var(--white);
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.invitation{
+    width: 95%;
+    background-color: var(--white);
+    margin-top: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+}
+/* invitation one start */
+.invitation-one{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 15% 85%;
+}
+.teamimgdiv img{
+    width: 35px;
+    height: 35px;
+    border-radius: 100px;
+    border: 1.5px solid var(--icncolor);
+    margin: 10px 0px 0px 10px;
+}
+.teamnamediv .teamnamesubdiv{
+    display: grid;
+    grid-template-columns: 60% 40%;
+}
+.teamnamediv div:nth-child(2){
+    margin: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items: center;
+}
+.teamnamediv div:nth-child(1) h2{
+    font-size: 16px;
+    margin: 12px 0px 5px 0px ;
+    color: #000;
+} 
+.frnd{
+    font-size: 16px;
+    margin: 5px 10px 0px 0px;
+    color: var(--ltgreen);
+
+}
+
+.public{
+    font-size: 16px;
+    margin: 5px 10px 0px 0px;
+    color: var(--red);
+}
+
+/* invitation one end */
+/* invitation two start */
+.invitation-two{
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    border-bottom: 1.5px solid var(--offwhite);
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.invitation-two div{
+    text-align: left;
+    width: 50%;
+}
+
+.invitation-two p:nth-child(1){
+    font-size: 14px;
+    margin: 15px 0px 5px 0px;
+    color: var(--icncolor);
+}
+.invitation-two p:nth-child(2){
+    font-size: 16px;
+    margin: 0;
+    color: var(--drakgray);
+}
+/* invitation two end */
+/* invitation three start */
+.invitation-three{
+    width: 100%;
+}
+.invitation-three div{
+    display: grid;
+    width: 100%;
+    grid-template-columns: 7% 90%;
+    padding: 5px 0px 10px 20px;
+}
+.invitation-three div i{
+    font-size: 18px;
+    margin: 0;
+    color: var(--icncolor);
+}
+.invitation-three div p{
+    font-size: 14px;
+    margin: 0;
+    color: var(--icncolor);
+}
+
+/* invitation three end */
+/* Accept reject button start*/
+.accept-reject{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    margin: 20px 0 10px 0;
+}
+.accept-reject button{
+    width: 40%;
+    font-size: 16px;
+    font-weight: 500;
+    padding: 10px 0;
+    border-radius: 5px;
+    border: none;
+}
+.accept-reject button:nth-child(1){
+    color: var(--drakgray);
+    background-color: var(--offwhite);
+}
+.accept-reject button:nth-child(2){
+    color: var(--white);
+    background-color: var(--ltgreen);
+}
+
+/* Accept reject button end*/
+/* my match nav start */
+.my_match_nav {
+    width: 100%;
+    height: 5vh;
+    background-color: var(--white);
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    display: flex;
+    align-items: center;
+}
+.my_match_nav a{
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0px 15px;
+    color: var(--drakgray);
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+/* my match nav end */
+/* invitation four start*/
+.invitation-four{
+    width: 100%;
+}
+.timetaken{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    align-items: center;
+}
+.timetaken p{
+    font-size: 14px;
+    color: var(--icncolor);
+    margin: 0px 10px 5px 5px;
+}
+.timetaken i{
+    font-size: 14px;
+    color: var(--icncolor);
+    margin: 0px 0px 5px 5px;
+}
+
+/* invitation four end */
+/* home page for existing user end */
+/* Response team start */
+.statusdiv{
+    width: 95%;
+    margin: 0;
+    padding: .7rem 0px;
+    display: grid;
+    grid-template-columns: 80% 10% 10%;
+    align-items: center;
+    border-top: 1.5px solid var(--offwhite);
+    padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.statusdiv p{
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+    margin-left: 5px;
+
+}
+.statusdiv p b{
+    margin-left: 10px;
+}
+.statusdiv i{
+    font-size: 1.3rem;
+}
+
+.boldaccepted{
+    color: var(--ltgreen);
+}
+
+/* Response team end */
+/* calender start */
+
+.calendar{
+    width: 100%;
+    height: 87vh;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: var(--offwhite);
+    overflow-x: hidden;
+}
+.timetogo p{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ltgreen);
+    margin: 0px 10px 2px 5px;
+}
+.timetogo i{
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ltgreen);
+    margin: 0;
+}
+/* calender end */
+/* players-request-main start */
+.players-request-main{
+    width: 100%;
+    height: 92vh;
+    background-color: var(--white);
+    font-family: 'Source Sans Pro', sans-serif;
+    overflow-y: scroll;
+    
+    
+}
+.players-request-main .searchbardiv{
+    position: sticky;
+    top: 0;
+    z-index: 11;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+
+.players-request-content{
+    width: 100%;
+    height: 100%;
+}
+.player-request-div{
+    width: 100%;
+    max-width: 550px;
+    margin:  0px auto;
+    padding: 10px 0;
+    display: grid;
+    grid-template-columns: 15% 55% 15% 15%;
+    
+}
+.player-request-div:nth-child(odd){
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.1);
+}
+
+.player-request-div div img{
+    width: 70%;
+    height: 80%;
+    margin: 0 0 0 5px;
+    border-radius: 100%;
+    border: .5px solid var(--icncolor);
+}
+
+.player-request-div div:nth-child(2), .player-request-div div{
+    background-color: transparent;
+    border: none;
+    text-align: left;
+}
+.player-request-div div:nth-child(2) h2{
+    font-size: 16px;
+    font-weight: 600;
+    display: inline;
+    color: var(--drakgray);
+    margin: 3px 0 0 0 ;
+}
+.player-request-div div:nth-child(2) div{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    margin: 0;
+}
+.player-request-div div:nth-child(2) div i{
+    font-size: 1rem;
+    color: var(--icncolor);
+    margin-right: 5px;
+}
+.player-request-div div:nth-child(2) div p{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--icncolor);
+    margin: 5px 0 0 0 ;
+}
+
+.player-request-div div:nth-child(3), .player-request-div div:nth-child(4){
+    text-align: center;
+}
+
+.player-request-div div:nth-child(3) i{
+    font-size: 1.8rem;
+    color: var(--ltgreen);
+    margin: 5px 0;
+}
+
+.player-request-div div:nth-child(4) i{
+    font-size: 1.8rem;
+    color: var(--icncolor);
+    margin: 5px 0;
+}
+.player-request-div div:nth-child(3) p, .player-request-div div:nth-child(4) p{
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--icncolor);
+    margin: 0 ;
+    opacity: .5;
+}
+
+/* players-request-main end */
+/* players profile popup start */
+.popup{
+    font-family: 'Source Sans Pro', sans-serif;
+    position: fixed;
+    top: 0%;
+    left: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 111;
+    transform: scale(.1); 
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s; 
+}
+.open-popup{
+    visibility: visible;
+    transform: scale(1); 
+}
+
+.popup-content{
+    width: 320px;
+    height: 530px;
+    background-color: var(--white);
+    position: relative;
+    
+}
+
+#error_msg{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--red);
+    text-align: center;
+}
+
+
+.backbtn{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: var(--drakgray);
+    border-radius: 50px;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+.backbtn i{
+    font-size: 1.5rem;
+    color: var(--fntwight);
+}
+
+.popup-content img{
+    width: 100%;
+    height: 55%;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+.player-name{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+}
+.player-name h3{
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--drakgray);
+    margin: 0;
+}
+.player-name p{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--icncolor);
+    margin: 0;
+}
+.player-address{
+    width: 100%;
+    height: 25%;
+    padding-top: 10px;
+    border-top: 2px solid var(--offwhite);
+}
+
+.player-address div{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 10% 90%;
+    align-items: center;
+    margin: 10px 0;
+}
+.player-address div i{
+    font-size: 1rem;
+    color: var(--drakgray);
+    margin: 0 0 0 10px;
+}
+.player-address div p{
+    font-size: 1rem;
+    color: var(--drakgray);
+    margin: 0;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.profilebtn{
+    width: 100%;
+    height: 10%;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--white);
+    background-color: var(--ltgreen);
+    border: none;
+}
+
+
+/* players profile popup start */
+/* main end */
+
+/* Search bar page start */
+
+/* header start */
+.searchbar-header{
+    width: 100%;
+    height: 8vh;
+    background-color: var(--white);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: start;
+    align-items: center;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+.searchbar-header {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--fntwight);
+}
+.searchbar-header i{
+    font-size: 1.3rem;
+    color: var(--drakgray);
+    padding: 0px 30px 0px 15px;
+}
+
+.searchbar-page{
+    width: 90%;
+    height: 70%;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+.searchbar-page input{
+    width: 90%;
+    height: 100%;
+    font-size: 16px;
+    border: none;
+
+}
+.searchbar-page input:focus{
+    outline: none;
+}
+
+/* header end */
+/* main start */
+.searchbar-main{
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.recent-search-div{
+    width: 100%;
+    background-color: var(--white);
+    margin-top: 15px;
+}
+.recent-search-div div:nth-child(1){
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+}
+.recent-search-div div:nth-child(1) h1{
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--drakgray);
+    padding-left: 10px;
+    margin: 10px 0px;
+}
+.recent-search-div div:nth-child(1) a{
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ltgreen);
+    padding-right: 10px;
+    margin: 10px 0px;
+}
+.searches{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 8% 90%;
+    align-items: center;
+    padding: 10px 0px;
+}
+
+.searches i{
+    font-size: 16px;
+    color: var(--icncolor);
+    padding : 0 0 0 10px ;
+    margin: 0px;
+}
+.searches p{
+    font-size: 16px;
+    color: var(--icncolor);
+    padding : 0;
+    margin: 0px;
+}
+/* main end */
+/* Search bar page end */
+/* laptop header start */
+
+@media only screen and (min-width: 610px){
+    .invitation{
+        width: 500px;
+    }
+    .invitation-content{
+        width: 75%;
+        padding-left: 25%;
+    }
+    .content-subheader h1{
+        font-size: 20px;
+        margin-left: 10px;
+    }
+
+    .teams{
+        width: 400px;
+    }
+    .teams-link, .teams{
+        margin-left: 0;
+        margin-right: 0;
+       
+    }
+    .content{
+        width: 75%;
+        padding-left: 25%;
+    }
+}
+
+@media only screen and (min-width: 750px){
+
+    header.headerdiv, .header-newmember{
+        display: none;
+    }
+    .bottom-main{
+        display: none;
+    }
+    .invitation-content {
+        height: 100%;
+    }
+    .content{
+        height: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    
+
+    /*  transition work start */
+.sandwich{
+    font-family: 'Source Sans Pro', sans-serif;
+    position: fixed;
+    width: 20%;
+    height: 100%;
+    background-color: var(--white);
+    top: 0px;
+    left: -80%;
+    transition: all .5s ease;
+    z-index: 111;
+    overflow-y: scroll;
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+#check{
+    display: none;
+}
+label #btn, label #cancel{
+    position: absolute;
+    cursor: pointer;
+}
+label #btn {
+    left: 10px;
+    top:2%;
+    font-size: 1.3rem;
+    padding: 6px 12px;
+    transition: all .5s;
+}
+label #cancel{
+    z-index: 1111;
+    left: -70%;
+    top: 17px;
+    color: var(--offwhite);
+    font-size: 1.3rem;
+    transition: all .5s ease;
+}
+#check:checked~.sandwich{
+    left: 0;
+}
+#check:checked ~ .laptop-header{
+    width: 80%;
+    float: right;
+}
+
+
+#check:checked ~ main{
+    width: 80%;
+    float: right;
+    opacity: 1;
+}
+#check:checked ~ main .invitation-content{
+    width: 100%;
+    padding-left: 0;
+}
+#check:checked ~ main .content{
+    width: 90%;
+    padding-left: 10%;
+}
+#check:checked ~ footer{
+    width: 80%;
+    float: right;
+    opacity: 1;
+}
+#check:checked ~ label #btn{
+    left: 20%;
+    opacity: 0;
+    pointer-events: none;
+}
+#check:checked ~ label #cancel{
+    left: 18%;
+    
+}
+/*  transition work end */
+
+    .laptop-header {
+        width: 100%;
+        height: 8vh;
+        background-color: var(--white);
+        display: grid;
+        grid-template-rows: 100%;
+        grid-template-columns: 10% 25% 55% 5% 5%;
+        align-items: center;
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+    
+    
+    .laptop-header i{
+        font-size: 1.3rem;
+        color: var(--icncolor);
+        text-align: center;
+    }
+    .logodiv{
+        transform: scale(1.3);
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: start;
+        align-items: center;
+    }
+    .laptop-header .logo{
+        width: 2rem;
+        height: 2rem;
+        margin-left: 1rem;
+    }
+    .laptop-header p{
+        margin: 0 0 0 3px;
+    }
+    .header-sub-list{
+        position: relative;
+        margin-right: 45px;
+    }
+    .header-list{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: end;
+        align-items: center;
+        
+    }
+    
+    .header-sub-list div:nth-child(1) p{
+        margin: 0;
+        padding: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--drakgray);
+        cursor: pointer;
+    }
+    .header-sub-list div:nth-child(1) p:hover{
+        color: var(--logoorange);
+    }
+    .header-list div.header-sub-list div:nth-child(2){
+        position: absolute;
+        top: 25px;
+        left: -10px;
+        display: flex;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        justify-content: start;
+        align-items: initial;
+        width: 150px;
+        background-color: var(--white);
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+        visibility: hidden;
+        transition: .3s;
+        z-index: 1111;
+        border-radius: 5px;
+    }
+    .header-list div.header-sub-list div:nth-child(2) a{
+        text-decoration: none;
+        font-size: 1rem;
+        font-weight: 600;
+        color: var(--drakgray);
+        margin: 10px 0 10px 10px;
+    }
+    .header-list div.header-sub-list div:nth-child(2) a:hover{
+        color: var(--logoorange);
+    }
+    .header-list div.header-sub-list:hover div:nth-child(2){
+        visibility: visible;
+        transition: .3s;
+    }
+    
+    }
+    
+    /* laptop header start */
+    
+/* search bar page big screen start */
+
+@media only screen and (min-width: 900px){
+    .search-laptop-div{
+        width: 900px;
+        margin-left: auto;
+      margin-right: auto;
+      height: 100vh;
+      box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+    }
+
+  } 
+  /* search bar page big screen end */
+
+.dummy-div{
+    display: none;
+}
+
+/* join team page big screen start */
+
+
+
+@media only screen and (min-width: 900px){
+
+    /* players profile popup start */
+
+.popup{
+    font-family: 'Source Sans Pro', sans-serif;
+    position: absolute;
+    top: 8%;
+    left: 0%;
+    width: 25%;
+    height: 100%;
+    background-color: var(--offwhite);
+    z-index: 111;
+    transform: scale(.1); 
+    transform: translate(-50%, 0%); 
+    visibility: hidden;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.2s; 
+    box-shadow: 0 0px 10px 0px rgba(0,0,0,0.2);
+}
+.open-popup{
+    visibility: visible;
+    transform: scale(1); 
+}
+.backbtn{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: transparent;
+    border-radius: 50px;
+    border: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: 0;
+    padding: 0;
+}
+.backbtn i{
+    font-size: 1.5rem;
+    color: var(--drakgray);
+}
+
+
+/* players profile popup end */
+
+    .jointeammain{
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-items: center;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+  } 
+  /* join team page big screen end */
+  
+  @media only screen and (min-width: 900px){
+    main.team-response-main{
+        width: 900px;
+        height: auto;
+        background-color: var(--white);
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.4);
+    }
+    .match-invitation-main, section.calendar{
+        width: 900px;
+        height: 100vh;
+        background-color: var(--white);
+        margin-left: auto;
+        margin-right: auto;
+        box-shadow: 0 0px 10px 0px rgba(0,0,0,0.4);
+    }
+    .players-request-main{
+        width: 75%;
+        padding-left: 25%;
+    }
+    .players-request-content{
+        margin-top: 20px;
+    }
+
+}

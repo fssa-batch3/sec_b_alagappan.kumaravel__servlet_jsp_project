@@ -9,7 +9,8 @@
         <title>Home page for newmember</title>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
-
+		<link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
+		
     </head>
 	<style>
 	@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,200;0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap');
@@ -23,7 +24,8 @@
     --icncolor: #72787f;
     --drakgray: #2a373f;
     --logoorange: #ff8908;
-
+	--background-page: #111020;
+    --tran: .3s;
   }
 
 body{
@@ -33,6 +35,103 @@ body{
 }  
 
 
+/* loading start*/
+
+#load_body{
+	display: none;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: var(--background-page);
+    opacity: 0.8;
+    position: fixed;
+    z-index: 1111;
+}
+.loading-cont {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.cont {
+    width: 100%;
+    height: 100%;
+    animation-name: rotate;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.loading-cont::before {
+    content: 'Loading...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    height: 90%;
+    border-radius: 50%;
+    color: #ff8908;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 0 5px #ff8908,
+        0 0 10px #ff8908,
+        0 0 20px #ff8908,
+        0 0 30px #ff8908,
+        0 0 50px #ff8908;
+    z-index: 111;
+    background-color: var(--background-page);
+}
+.loading-cont .cont span {
+    position: absolute;
+    width: 50%;
+    height: 50%;
+    background-color: #ff8908;
+}
+.loading-cont .cont span:first-child {
+    top: 0;
+    left: 0;
+    transform-origin: top left;
+    animation-name: loading;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+.loading-cont .cont span:nth-child(2) {
+    bottom: 0;
+    right: 0;
+    transform-origin: bottom right;
+    animation-name: loading;
+    animation-duration: 1.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;    
+}
+@keyframes loading {
+    0% {
+        transform: scale(.3);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+    100% {
+        transform: scale(.3);
+    }
+}
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* loading end*/
 
 /* main start */
 main{
@@ -524,7 +623,14 @@ header i{
 
 	</style>
     <body>
-              
+        <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>      
         <!-- header start -->
         <header class="createteam-header">
             <a onclick="previousPage()">
@@ -563,10 +669,10 @@ header i{
                 <input id="distric" type="text" name="district" value="<%= team != null ?team.getAddress().getDistrict() :""%>" placeholder="Eg: chennai" title="Use only lowercase(abc...z)" pattern="[a-zA-Z]{3,}" required>
 
                 <label>About</label>
-                <input id="team_about" name="about" maxlength="50"><%= team != null ?team.getAbout() :""%></input>
+                <input id="team_about" name="about" maxlength="50" value="<%= team != null ?team.getAbout() :""%>" >
 
                 <label>Open for players</label>
-                <input id="team_player_description" name="teamPlayerDescription" placeholder="Eg: we need one good allrounder " maxlength="50" required><%= team != null ?team.getOpenForPlayerDescription() :""%></input>
+                <input id="team_player_description" name="teamPlayerDescription" placeholder="Eg: we need one good allrounder " minlength="5" maxlength="50"  value="<%= team != null ?team.getOpenForPlayerDescription() :""%>" required>
 		 		<input id="team_image" style="visibility:hidden;" type="url" name="url" value="<%= team != null ?team.getUrl() :"https://iili.io/HWEqLtp.webp"%>" pattern="https?://.+\.(jpg|jpeg|png|gif|bmp|webp)$">
                 <div class="updatediv">
                     <button type="submit">Create my team</button>
@@ -580,14 +686,19 @@ header i{
         <script src="./assets/js/vendor/lib/moment/moment.min.js">
 	</script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
+        
 		   <script>
+		   const loadingPage = document.getElementById("load_body");
 
 		 let playerId = JSON.parse(sessionStorage.getItem("playerId"));
         document.getElementById("playerId").value = playerId;
 
 
         	function previousPage() {
+        		loadingPage.style.display = 'flex';
         	  window.history.go(-1);
+        	  loadingPage.style.display = 'none';
         	}
         	
         	var textarea = document.getElementById("image_host_url");

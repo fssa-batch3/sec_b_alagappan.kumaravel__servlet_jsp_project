@@ -10,6 +10,8 @@ const url_id = JSON.parse(urlParams.get("player_id"));
 
 const my_id = JSON.parse(sessionStorage.getItem("playerId"));
 
+const loadingPage = document.getElementById("load_body");
+
 // ----------------- button css animation start
 
 function member() {
@@ -107,6 +109,8 @@ return team_players_id;
 }
 
 async function playerProfilePage(){
+	
+	loadingPage.style.display = 'flex';
 
 let playerProfile = await getDataById("player/detail?player_id=", url_id); // here i find player profile
 
@@ -201,6 +205,7 @@ function whatsapp() {
   window.location.href=`https://wa.me/${playerProfile.phoneNumber}` ;
 }
 
+loadingPage.style.display = 'none';
 // PLAYER PROFILE END
 
 }

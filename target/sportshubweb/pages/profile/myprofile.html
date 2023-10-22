@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>My profile</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
+        <link rel="stylesheet" href="../../assets/css/myprofile.css">
+        <link rel="stylesheet" href="../../assets/css/footerhome.css">
+    </head>
+
+    <body>
+        <div class="big-screen-profile-div">
+            <!-- header start -->
+            <header>
+                <div>
+                    <a onclick="backBtnHome()">
+                        <i class="fa-solid fa-arrow-left"></i>
+                    </a>
+                </div>
+		
+                <div>
+                    <a onclick="moveProfile()">
+                        <p>My Cricket Profile</p>
+                    </a>
+                    <a onclick="moveProfile()">
+                        <i class="fa-solid fa-circle-chevron-right"></i>
+                    </a>
+                </div>
+            </header>
+            <!-- header end -->
+            <!-- main start -->
+            <main>
+                <!-- upper profile start -->
+                <div class="profilediv">
+                    <div class="profileimagediv">
+                        <img id="player_image" alt="playerface">
+                    </div>
+                    <div class="profiledetailsdiv">
+                        <h1 id="user_username"></h1>
+                        <div>
+                            <i class="fa-solid fa-location-dot"></i>
+                            <p id="user_area_header"></p>
+                        </div>
+                        <div>
+                            <i class="fa-regular fa-calendar"></i>
+                            <p id="create_date"></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- upper profile end -->
+                <!-- My profile start -->
+                <div class="myprofilediv">
+                    <div class="myprofilehead">
+                        <p>My Profile</p>
+                        <a onClick="onEdit(event)">EDIT</a>
+                    </div>
+                    <div class="myprofiledetails">
+                        <div>
+                            <p>Full Name</p>
+                            <P id="user_full_name"></P>
+                        </div>
+                        <div>
+                            <p>MOBILE NUMBER</p>
+                            <P id="user_phone_number"></P>
+                        </div>
+                        <div>
+                            <p>Gender</p>
+                            <P id="user_gender"></P>
+                        </div>
+                        <div>
+                            <p>Date of birth</p>
+                            <P id="user_date_of_birth"></P>
+                        </div>
+                        <div>
+                            <p>Area</p>
+                            <P id="user_area"></P>
+                        </div>
+                        <div>
+                            <p>District</p>
+                            <P id="user_distric"></P>
+                        </div>
+                        <div>
+                            <p>ABOUT</p>
+                            <P id="user_about"></P>
+                        </div>
+
+                    </div>
+                    <div class="myprofilerange">
+                        <div class="range_div">
+                            <div class="range_back">
+                                <div class="range_cover"></div>
+                            </div>
+                            <label class="range-label"></label>
+                        </div>
+                        <p> Complete Profile</p>
+                    </div>
+                </div>
+                <!-- My profile end -->
+                <div class="logout">
+                    <button type="button" onclick="logOut()">LOG OUT</button>
+                    <!-- <button type="button" onclick="del()">DELETE</button> -->
+                </div>
+
+            </main>
+            <!-- main end -->
+            <!-- footer starts -->
+        </div>
+        <footer>
+            <p>Follow us on</p>
+            <div>
+                <a href="#">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="#">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+            </div>
+            <div>
+                <a href="#">About</a>
+                <a href="#">Why us</a>
+                <a href="#">How to use</a>
+            </div>
+            <div class="rights">
+                <p>Copyright © 2019 - 2022 Sportshub - Website Designed By Alagappan</p>
+            </div>
+        </footer>
+        <!--  footer ends -->
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+        <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="../../assets/js/myProfile.js"></script>
+        <script src="../../assets/js/login.js"></script>
+    </body>
+
+</html>
