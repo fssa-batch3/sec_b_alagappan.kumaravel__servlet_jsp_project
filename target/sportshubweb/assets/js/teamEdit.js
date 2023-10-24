@@ -7,6 +7,7 @@ const urlParams = new URLSearchParams(queryString);
 const captain_id = urlParams.get("unique_id");
 
 const team_id = urlParams.get("team_id");
+const loadingPage = document.getElementById("load_body");
 
 const { origin } = window.location;
 
@@ -262,7 +263,6 @@ async function updateTeamData(endpoint, data) {
 			if (result.status === 200) {
 				// Success, reload the page
 				location.reload();
-				Notify.success("Deleted successfully");
 			} else {
 				// Handle error if needed
 				console.error("Failed to delete:", result.message);
@@ -295,7 +295,7 @@ async function updateTeamData(endpoint, data) {
 		});
 }
 async function teamUpdate(e) {
-
+	loadingPage.style.display = 'flex';
 	e.preventDefault();
 
 	// for unique user name end
@@ -331,73 +331,47 @@ async function teamUpdate(e) {
 		},
 		body: new URLSearchParams(teamProfile).toString(),
 	}).then(response => {
-		console.log(response)
 		if (!response.ok) {
+			loadingPage.style.display = 'none';
 			throw new Error(response.message);
 		}
 		return response.json()
 	}
 	).then(data => {
 		if (data.error) {
-			alert("Update failed: " + data.error);
+			loadingPage.style.display = 'none';
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: data.error
+			})
 		} else {
 			if (data.status == 200) {
+				loadingPage.style.display = 'none';
 				window.history.go(-1);
 			} else {
-				alert(data.message);
+				loadingPage.style.display = 'none';
+				Swal.fire({
+					icon: 'error',
+					title: 'Oops...',
+					text: data.message
+				})
 			}
 
 		}
 	})
 		.catch(error => {
 			console.error("Error:", error);
-			alert("An error occurred while logging in. " + error.message);
+			loadingPage.style.display = 'none';
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: "An error occurred while updating. " + error.message
+			})
 		});
 
 }
 
-
-async function updateData(endpoint, data) {
-	let value = 1;
-	await axios.patch(`http://localhost:3000/${endpoint}`, data, {
-		"Content-Type": "application/json",
-	}).then((d) => {
-		console.log(d);
-		value = d.data
-	})
-		.catch((error) => {
-			console.log(error);
-			alert("Something Went Wrong in update relation");
-		});
-
-	console.log(value)
-	return value
-}
-
-async function getRelationDataByPlayer(endpoint, user_api_id) {
-	const data = axios.get(`http://localhost:3000/${endpoint}`, {
-		params: {
-			playerId: user_api_id,
-		},
-	});
-	const response = await data;
-
-	const team_players_id = response.data;
-
-	return team_players_id;
-}
-async function getRelationDataByTeam(endpoint, user_api_id) {
-	const data = axios.get(`http://localhost:3000/${endpoint}`, {
-		params: {
-			teamId: user_api_id,
-		},
-	});
-	const response = await data;
-
-	const team_players_id = response.data;
-
-	return team_players_id;
-}
 async function getDataById(endpoint, user_api_id) {
 	const response = axios.get(`${startPoint}${endpoint}${user_api_id}`);
 	console.log(response)
@@ -416,7 +390,7 @@ async function getDataById(endpoint, user_api_id) {
 	return data;
 }
 async function teamEditPage() {
-
+	loadingPage.style.display = 'flex';
 	/*const player_relation_data = await getRelationDataByPlayer("player_team_relation", my_id)
 	const me_team_relation = player_relation_data.find(e => e.teamId === JSON.parse(team_id) && e.activeStatus !== 0)
 	
@@ -489,7 +463,7 @@ async function teamEditPage() {
 					`Are you confrim to switch captain`
 				)
 			) {
-
+				loadingPage.style.display = 'flex';
 				const user_data = {
 					"playerId": new_cap_id,
 					"teamId": team_id,
@@ -505,24 +479,40 @@ async function teamEditPage() {
 
 					if (response.status === 200) {
 						const result = response.data;
-						console.log(result);
 						if (result.status === 200) {
+							loadingPage.style.display = 'none';
 							// Success, reload the page
 							window.location.href = `${startPoint}/home?player_id=${my_id}`;
 						} else {
+							loadingPage.style.display = 'none';
 							// Handle error if needed
 							console.error("Failed to delete:", result.message);
-							alert(result.message);
+							Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: result.message
+							})
 						}
 					} else {
 						// Handle HTTP error
+						loadingPage.style.display = 'none';
 						console.error("HTTP Error:", response.statusText);
-						alert(response.statusText);
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: response.statusText
+						})
+
 					}
 				} catch (error) {
 					// Handle network or other errors
+					loadingPage.style.display = 'none';
 					console.error("Error:", error);
-					alert(error.message);
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: error.message
+					})
 				}
 
 
@@ -545,6 +535,7 @@ async function teamEditPage() {
 					`Are you confrim to Remove "${person_data.userName}" From your team`
 				)
 			) {
+				loadingPage.style.display = 'flex';
 				const user_data = {
 					"playerId": remove_id,
 					"teamId": team_id
@@ -561,32 +552,53 @@ async function teamEditPage() {
 						const result = response.data;
 						console.log(result);
 						if (result.status === 200) {
+							loadingPage.style.display = 'none';
 							// Success, reload the page
 							window.location.reload()
 						} else {
 							// Handle error if needed
+							loadingPage.style.display = 'none';
 							console.error("Failed to delete:", result.message);
-							alert(result.message);
+							Swal.fire({
+								icon: 'error',
+								title: 'Oops...',
+								text: result.message
+							})
 						}
 					} else {
 						// Handle HTTP error
+						loadingPage.style.display = 'none';
 						console.error("HTTP Error:", response.statusText);
-						alert(response.statusText);
+						Swal.fire({
+							icon: 'error',
+							title: 'Oops...',
+							text: response.statusText
+						})
 					}
 				} catch (error) {
 					// Handle network or other errors
+					loadingPage.style.display = 'none';
 					console.error("Error:", error);
-					alert(error.message);
+					Swal.fire({
+						icon: 'error',
+						title: 'Oops...',
+						text: error.message
+					})
 				}
 
 
 			}
 		});
 	});
-
+	loadingPage.style.display = 'none';
 }
 
 function previousPage() {
+	loadingPage.style.display = 'flex';
+	setTimeout(function() {
+		loadingPage.style.display = 'none';
+	}, 5000);
+
 	window.history.go(-1);
 }
 

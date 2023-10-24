@@ -22,16 +22,17 @@
 }
 
 .load-more-button {
-  background-color: #ff8908; /* Change to your desired button color */
-  color: #fff;
+  background-color: #fff; /* Change to your desired button color */
+  color: #ff8908;
   border: none;
-  padding: 10px 20px;
+  padding: 7px 10px;
   cursor: pointer;
   transition: background-color 0.3s;
+  box-shadow: 0px 5px 15px rgba(30, 15, 15, 0.2);
 }
 
 .load-more-button:hover {
-  background-color: #ff8908; /* Change to your desired hover color */
+ 	color: #000;	 /* Change to your desired hover color */
 }
 
 /* Style for the loading spinner */
@@ -53,8 +54,16 @@
 
 </style>
     </head>
-
+	
     <body>
+  <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <!-- header start -->
         <div class="area-header">
             <a onclick="previousPage()">

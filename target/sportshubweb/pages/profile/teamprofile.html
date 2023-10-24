@@ -11,11 +11,24 @@
         <link rel="stylesheet" href="../../assets/css/profileview.css">
         <link rel="stylesheet" href="../../assets/css/update_score.css">
         <link rel="stylesheet" href="../../assets/css/roundslider.css">
-
+        <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.min.css" rel="stylesheet">
+        
+	<style>
+	.button_underline{
+	width : 33.33%;
+	}
+	</style>
     </head>
 
     <body>
-
+<div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <!-- header start -->
         <header>
             <!-- <img class="bgimg" src="../../assets/images/team1profile.jpg" alt="backgroundimage"> -->
@@ -93,137 +106,7 @@
             <!-- main start -->
             <section class="second">
                 <div class="completed">
-                    <!-- popup past result start -->
-                    <div class="popup" id="popup_result">
-                        <div class="popup-team-content">
-                            <div class="score_container">
-                                <div class="top">
-                                    <div class="backgroundimage">
-                                        <div class="score_head">
-                                            <button type="button" class="closepopupresult">
-                                                <i class="fa-solid fa-chevron-left"></i>
-                                            </button>
-                                            <p>SCORECARD</p>
-                                        </div>
-                                        <div class="team_score">
-                                            <div class="team_name">
-                                                <img class="my_team_image" id="past_my_team_img" src="" alt="my team image">
-                                                <p class="my_team_name" id="past_my_team"></p>
-                                            </div>
-                                            <div class="score_value">	
-                                                <h2>Matches</h2>
-                                                <div class="score">
-                                                    <div>
-                                                        <p id="past_Won_score"></p>
-                                                        <p class="subname">Won</p>
-                                                    </div>
-								
-                                                    <div>
-                                                        <p id="past_draw_score"></p>
-                                                        <p class="subname">Draw</p>
-                                                    </div>
-								
-                                                    <div>
-                                                        <p id="past_loss_score"></p>
-                                                        <p class="subname">Loss</p>
-                                                    </div>
-									
-                                                </div>
-                                            </div>
-                                            <div class="team_name">
-                                                <img class="opp_team_image" id="past_opp_team_img" src="" alt="opponent image">
-                                                <p class="opp_team_name" id="past_opp_team"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="bottom">
-                                    <div class="result_nav">
-                                        <button class="mvpbtn" type="button" >MVPs</button>
-                                        <button class="playersbtn" type="button" >Players</button>
-                                        <button class="detailsbtn" type="button" >Details</button>
-                                    </div>
-                                    <!-- match details start -->
-                                    <div class="past_match_details">
-                                        <h3>Details</h3>
-                                        <div class="details">
-                                            <div>
-                                                <i class="fa-regular fa-clock"></i>
-                                                <p id="past_match_time"></p>
-                                            </div>
-                                            <div>
-                                                <i class="fa-solid fa-shield-halved"></i>
-                                                <p id="past_match_type"></p>
-                                            </div>
-                                            <div>
-                                                <i class="fa-solid fa-location-dot"></i>
-                                                <p id="past_match_location"></p>
-                                            </div>
-                                            <div>
-                                                <i class="fa-solid fa-circle-info"></i>	
-                                                <p id="past_match_info"></p>
-                                            </div>
-                                        </div>
-                                    </div>
-	
-                                    <!-- match details end -->
-	
-                                    <!-- match players start -->
-                                    <div class="past_match_players">
-                                        <h3>Players</h3>
-                                        <div class="members">
-                                            <div class="my_team_players">
-                                                <h4></h4>
-                                                <div>
-	
-                                                </div>
-	
-                                            </div>
-                                            <div class="opp_team_players">
-                                                <h4></h4>
-                                                <div>
-	
-                                                </div>
-                                                <!-- <div class="players">
-                                                    <img src="../../assets/images/Avatar.png" alt="">
-                                                    <p>Madhav</p>
-                                                    </div>
-	
-                                                    <div class="players">
-                                                    <img src="../../assets/images/Avatar.png" alt="">
-                                                    <p>Madhav</p>
-                                                    </div> -->
-	
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- match players end -->
-	
-                                    <!-- match mvps start -->
-                                    <div class="mvp_det">
-                                        <table class="past_players_list">
-                                            <caption>Most Valuble Players</caption>
-                                            <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th>Players</th>
-                                                    <th>Team</th>
-                                                </tr></thead>
-                                            <tbody>
-	
-                                            </tbody>
-								  
-                                        </table>
-		
-                                    </div>
-                                    <!-- match mvps end -->
-	
-                                </div>
-				
-                            </div>	
-                        </div>
-                    </div>
-                    <!-- popup past result end -->
+                
                 </div>
             </section>
             <section class="three">
@@ -267,7 +150,9 @@
         <!-- main end -->
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="../../assets/js/vendor/lib/moment/moment.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
         <script src="../../assets/js/roundslider.js"></script>
         <script type="module" src="../../assets/js/teamprofile.js"></script>
+        
     </body>
 </html>

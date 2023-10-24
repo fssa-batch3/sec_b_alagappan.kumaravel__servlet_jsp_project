@@ -30,6 +30,7 @@ C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\s
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\CORSFilter.java
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\HomePageServlet.java
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\CreateRequestResponseRejectServlet.java
+C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\ListAllPlayerTeamServlet.java
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\DetailPlayerServlet.java
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\SearchTeamForOpenPlayerTeamServlet.java
 C:\software\Eclipse_IDE_Workspace\sportshubweb\src\main\java\in\fssa\sportshub\servlets\UpdateTeamServlet.java

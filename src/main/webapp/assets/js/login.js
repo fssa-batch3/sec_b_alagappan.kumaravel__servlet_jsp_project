@@ -375,9 +375,8 @@ async function updateData(endpoint, data) {
 
 async function update(e) {
   e.preventDefault();
-
   const person_data = {};
-
+loadingPage.style.display = 'flex';
   // const same_user_name = sameUserName(person_data);
 
   // if (same_user_name) {
@@ -400,7 +399,7 @@ async function update(e) {
   const user_name = document.getElementById("user_username").value;
   const password = document.getElementById("user_password").value;
   
-  console.log(password)
+  console.log(district)
   person_data.userName = user_name;
   person_data.password = password;
   person_data.firstName = first_name;
@@ -421,6 +420,7 @@ async function update(e) {
   
   person_data.id = user_api_id;
   await updateData(endpoint, person_data);
+  loadingPage.style.display = 'none';
 }
 
 // delete profile start // not worked for database

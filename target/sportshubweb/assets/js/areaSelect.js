@@ -17,6 +17,7 @@ const searchInput = document.getElementById("search");
 const searchButton = document.getElementById("search-icon");
 
 const loadingSpinner = document.querySelector('.loading-spinner');
+const loadingPage = document.getElementById("load_body");
 
 let areaList = [];
 
@@ -58,7 +59,7 @@ searchButton.addEventListener("click", async () => {
 		await uppendData(searchTeam);
 		loadingSpinner.style.display = 'none';
 		if(searchTeam.length == 0){
-			document.querySelector(".area-background-color").innerHTML = "No area available";
+			document.querySelector(".area-background-color").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No area available</div>';
 		}	
 		
 	}
@@ -127,14 +128,15 @@ selectbtn.forEach((each) => {
 }
 
 async function areaSelectPage(){
-loadingSpinner.style.display = 'block';
+
+loadingPage.style.display = 'flex';
 
 let area_list = await getDataById("areas", "");
 
 areaList = [...areaList, ...area_list];
 
 await uppendData(areaList);
-loadingSpinner.style.display = 'none';
+loadingPage.style.display = 'none';
 }
 
 function previousPage() {

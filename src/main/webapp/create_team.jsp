@@ -662,11 +662,17 @@ header i{
              
                 <input id="teamname" name="teamName" value="<%= team != null ?team.getTeamName() :""%>" title="Use firstletter between (A-Z) and min 15 character" pattern="^[a-zA-Z][a-zA-Z\s]{1,30}$" type="text" required> 
                 <p class="wrong_password"></p>
-                <label>Area</label> 
-                <input id="area" name="area" value="<%= team != null ?team.getAddress().getArea() :""%>" title="Use only lowercase(abc...z)" pattern="[a-zA-Z]{3,}" type="text" required> 
+                
+                <label class="hide" >Area & District</label>
+				<div class="hide" id="address-form">   
+                    <input id="addressSearch" type="text" placeholder="Search and enter your area"  onchange="display()" >
+                </div>
+                
+                <label class="unhide"  style="display:none;">Area</label> 
+                <input class="unhide" id="area" name="area" value="<%= team != null ?team.getAddress().getArea() :""%>" type="text" onclick="display1()" style="display:none;" readonly> 
 
-                <label>Distric</label>
-                <input id="distric" type="text" name="district" value="<%= team != null ?team.getAddress().getDistrict() :""%>" placeholder="Eg: chennai" title="Use only lowercase(abc...z)" pattern="[a-zA-Z]{3,}" required>
+                <label class="unhide"  style="display:none;">Distric</label>
+                <input class="unhide" id="distric" type="text" name="district" value="<%= team != null ?team.getAddress().getDistrict() :""%>" onclick="display1()" style="display:none;" readonly>
 
                 <label>About</label>
                 <input id="team_about" name="about" maxlength="50" value="<%= team != null ?team.getAbout() :""%>" >
@@ -687,14 +693,129 @@ header i{
 	</script>
         <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.28/dist/sweetalert2.all.min.js"></script>
+         	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script>
+        <script>
         
-		   <script>
+
 		   const loadingPage = document.getElementById("load_body");
 
-		 let playerId = JSON.parse(sessionStorage.getItem("playerId"));
-        document.getElementById("playerId").value = playerId;
+			 let playerId = JSON.parse(sessionStorage.getItem("playerId"));
+	        document.getElementById("playerId").value = playerId;
+	        
+        let autocomplete;
+        let address1Field;
+		const searchAddress = document.querySelectorAll(".hide");
+		const areaAndDistrict = document.querySelectorAll(".unhide");
+        if(document.querySelector("#area").value != ""){
+        	areaAndDistrict.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        }
+		
+        function initAutocomplete() {
+            address1Field = document.querySelector("#addressSearch");
 
-
+            console.log(address1Field)
+            
+            autocomplete = new google.maps.places.Autocomplete(address1Field, {
+                componentRestrictions: { country: ["in"] },
+                fields: ["address_components", "geometry"],
+                types: ["geocode"],
+            });
+            autocomplete.addListener("place_changed", fillInAddress);
+        }
+        function fillInAddress() {
+            const place = autocomplete.getPlace();
+            console.log(place)
+            let address1 = "";
+            let postcode = "";
+            let localityName;
+            let administrativeAreaName;
+            let subLocalityName;
+            let subLocalityName2;
+            for (const component of place.address_components) {
+                const componentType = component.types[0];
+                switch (componentType) {
+                    case "street_number": {
+                        address1 = `${component.long_name} ${address1}`;
+                        break;
+                    }
+                    case "route": {
+                        address1 += component.short_name;
+                        break;
+                    }
+                    case "postal_code": {
+                        postcode = `${component.long_name}${postcode}`;
+                        break;
+                    }
+                    case "postal_code_suffix": {
+                        postcode = `${postcode}-${component.long_name}`;
+                        break;
+                    }
+                    case "locality": {
+                        localityName = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_3": {
+                        subLocalityName2 = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_1": {
+                        subLocalityName = component.long_name;
+                        break;
+                    }
+                    case "administrative_area_level_3":
+                        administrativeAreaName = component.long_name;
+                        document.querySelector("#distric").value = component.long_name;
+                        break;
+                }
+            }
+            if (localityName === administrativeAreaName) {
+                document.querySelector("#area").value = subLocalityName;
+            }
+            else {
+                document.querySelector("#area").value = localityName;
+                
+            }
+            address1Field.value = address1;
+            address1Field.focus();
+            areaAndDistrict.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        }
+        // window.initAutocomplete = initAutocomplete;
+        
+        loadingPage.style.display = 'none';
+        
+        
+        function display(){
+        	address1Field.focus();
+        	areaAndDistrict.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        }
+        
+        function display1(){
+        	address1Field.focus();
+        	areaAndDistrict.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        }
+        
+        
         	function previousPage() {
         		loadingPage.style.display = 'flex';
         	  window.history.go(-1);

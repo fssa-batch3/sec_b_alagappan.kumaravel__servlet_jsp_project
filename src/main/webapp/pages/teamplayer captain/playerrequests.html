@@ -13,6 +13,14 @@
     </head>
 
     <body>
+    <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <!-- header start -->
         <header>
             <a onclick="previousPage()">
@@ -78,9 +86,7 @@
 function ClosePopup() {
   popup.classList.remove("open-popup");
 }
-function previousPage() {
-  window.history.go(-1);
-}
+
 </script>
         <script src="../../assets/js/player_response.js"></script>
 

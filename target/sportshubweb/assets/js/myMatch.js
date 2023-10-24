@@ -8,6 +8,7 @@ const urlParams = new URLSearchParams(queryString);
 const my_id = JSON.parse(sessionStorage.getItem("playerId"));
 
 const myTeamId = JSON.parse(urlParams.get("teamId"))
+const loadingPage = document.getElementById("load_body");
 
 function upcoming() {
 	document.querySelector(".link1").style.color = "#ff8908";
@@ -315,7 +316,7 @@ async function updateData(endpoint, data) {
 }
 
 async function myMatchPage() {
-
+	loadingPage.style.display = 'flex';
 	const request_list = await getDataById("my_match?playerId=", my_id);
 
 	let matchInvitaton = []
@@ -323,9 +324,9 @@ async function myMatchPage() {
 
 	if (request_list !== []) {
 
-		for (let i = 0; i < request_list.length; i++) {
+		for (const element of request_list) {
 
-			const get_match_data = request_list[i];
+			const get_match_data = element;
 
 			const dateString = get_match_data["matchTime"];
 			const givenDate = new Date(dateString);
@@ -357,7 +358,7 @@ async function myMatchPage() {
 	}
 
 	if (matchInvitaton !== 0) {
-		for (let i = 0; i < matchInvitaton.length; i++) {
+		for (const element of matchInvitaton) {
 
 			const div_class_invitation = document.createElement("div");
 			div_class_invitation.setAttribute("class", "invitation");
@@ -376,12 +377,12 @@ async function myMatchPage() {
 			let opp_team_url = "";
 			let opp_team_name = "";
 
-			if (matchInvitaton[i]["createdTeam"]["id"] != myTeamId) {
-				opp_team_url = matchInvitaton[i]["createdTeam"]["Url"];
-				opp_team_name = matchInvitaton[i]["createdTeam"]["teamName"];
+			if (element["createdTeam"]["id"] != myTeamId) {
+				opp_team_url = element["createdTeam"]["Url"];
+				opp_team_name = element["createdTeam"]["teamName"];
 			} else {
-				opp_team_url = matchInvitaton[i]["opponentTeam"]["Url"];
-				opp_team_name = matchInvitaton[i]["opponentTeam"]["teamName"];
+				opp_team_url = element["opponentTeam"]["Url"];
+				opp_team_name = element["opponentTeam"]["teamName"];
 			}
 
 
@@ -403,7 +404,7 @@ async function myMatchPage() {
 
 			const team_name_subdiv_header = document.createElement("h2");
 			const link = document.createElement("a");
-			link.href = `../profile/teamprofile.html?team_id=${matchInvitaton[i]["opponentTeam"]["id"]}`; 
+			link.href = `../profile/teamprofile.html?team_id=${element["opponentTeam"]["id"]}`; 
 			link.innerText = `vs ${opp_team_name}`; 
 			team_name_subdiv_header.appendChild(link);
 			team_name_subdivnthchild1.append(team_name_subdiv_header);
@@ -419,7 +420,7 @@ async function myMatchPage() {
 			team_name_subdivnthchild2.append(team_name_subdiv_time_icon);
 
 			const team_name_subdiv_para = document.createElement("p");
-			team_name_subdiv_para.innerText = moment(matchInvitaton[i].matchTime)
+			team_name_subdiv_para.innerText = moment(element.matchTime)
 				.startOf("sec")
 				.fromNow();
 			team_name_subdivnthchild2.append(team_name_subdiv_para);
@@ -439,7 +440,7 @@ async function myMatchPage() {
 			div_class_invitation_two_subdiv1.append(team_name_subdiv_typeheader);
 
 			const team_name_subdiv_typevalue = document.createElement("p");
-			team_name_subdiv_typevalue.innerText = (matchInvitaton[i].typeOfMatch == 1) ? "Betting Match" : "Friendly Match";
+			team_name_subdiv_typevalue.innerText = (element.typeOfMatch == 1) ? "Betting Match" : "Friendly Match";
 			div_class_invitation_two_subdiv1.append(team_name_subdiv_typevalue);
 
 			const div_class_invitation_two_subdiv2 = document.createElement("div");
@@ -451,7 +452,7 @@ async function myMatchPage() {
 
 			const team_name_subdiv_timevalue = document.createElement("p");
 
-			const match_time = matchInvitaton[i].matchTime;
+			const match_time = element.matchTime;
 
 			team_name_subdiv_timevalue.innerText = moment(match_time).format('llll');
 
@@ -477,7 +478,7 @@ async function myMatchPage() {
 			div_class_invitation_three_subdiv3.append(div_class_invitation_three_icon3);
 
 			const div_class_invitation_three_para3 = document.createElement("p");
-			div_class_invitation_three_para3.innerText = matchInvitaton[i].location;
+			div_class_invitation_three_para3.innerText = element.location;
 			div_class_invitation_three_subdiv3.append(div_class_invitation_three_para3);
 
 			const div_class_invitation_three_subdiv4 = document.createElement("div");
@@ -491,13 +492,13 @@ async function myMatchPage() {
 			div_class_invitation_three_subdiv4.append(div_class_invitation_three_icon4);
 
 			const div_class_invitation_three_para4 = document.createElement("p");
-			div_class_invitation_three_para4.innerText = matchInvitaton[i].information;
+			div_class_invitation_three_para4.innerText = element.information;
 			div_class_invitation_three_subdiv4.append(div_class_invitation_three_para4);
 
 			document.querySelector(".upcoming").append(div_class_invitation);
 		}
 	}
-
+loadingPage.style.display = 'none';
 	// this loop is for upcoming match end ----------------
 	// this loop is for live match start ----------------
 
@@ -978,6 +979,11 @@ function ClosePopup() {
 	popup.classList.remove("open-popup");
 }
 function previousPage() {
+		loadingPage.style.display = 'flex';
+	setTimeout(function () {
+  loadingPage.style.display = 'none';
+}, 5000);
+	
 	window.history.go(-1);
 }
 

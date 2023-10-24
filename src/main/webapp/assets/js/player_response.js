@@ -7,6 +7,7 @@ const urlParams = new URLSearchParams(queryString);
 const phonenumber = urlParams.get("unique_id");
 
 const teamId = urlParams.get("teamId");
+const loadingPage = document.getElementById("load_body");
 
 const unique_id = phonenumber;
 
@@ -81,46 +82,17 @@ async function getRelationDataByTeam(endpoint, user_api_id) {
 }
 
 async function PlayerResponsePage() {
-  
-/*  const relation_object = await getRelationDataByPlayer(
-    "player_team_relation",
-    my_id
-  );
-  const find_team_id = relation_object.find((e) => e.activeStatus !== 0);
-
-  // here i get team unique id
-
-  const team_unique_id = find_team_id.teamId;
-
-  const request_list = await getRelationDataByTeam(
-    "response_list",
-    team_unique_id
-  ); // request list data
-
-  const filter_request_data = request_list.filter((e) => e.requestStatus === 2);
-  console.log(request_list);
-  console.log(filter_request_data);*/
+loadingPage.style.display = 'flex';
   const players_data = await getDataById("player/team_request?teamId=", teamId);
 
-/*  for (let i = 0; i < filter_request_data.length; i++) {
-    const player_number = filter_request_data[i].playerId;
-
-    const player_object = await getDataById("users", player_number);
-
-    const area_id = player_object["areaUniqueId"];
-
-    const address = await getDataById("area_list", area_id);
-
-    player_object["address"] = address;
-
-    player_object["request_id"] = filter_request_data[i]["id"];
-
-    players_data.push(player_object);
-  }*/
   console.log(players_data);
   // here above we find the players who give request to this team
 
   // now I am created template for show the request
+
+if(players_data.length == 0){
+	document.querySelector(".players-request-content").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No Request Found</div>';
+}
 
   for (let i = 0; i < players_data.length; i++) {
     const player = players_data[i];
@@ -134,6 +106,7 @@ async function PlayerResponsePage() {
   const selectbtn = document.querySelectorAll(".popup_profile");
   selectbtn.forEach((each) => {
     each.addEventListener("click", () => {
+		loadingPage.style.display = 'flex';
       popup.classList.add("open-popup");
       const person_data = players_data.find(
         (f) => f.id === JSON.parse(each.dataset.id)
@@ -169,6 +142,7 @@ async function PlayerResponsePage() {
 	document.querySelector(".profilebtn").addEventListener("click" ,()=>{
 		window.location.href=`../profile/playerprofile.html?player_id=${each.dataset.id}`
 	})
+	loadingPage.style.display = 'none';
 	
     });
   });
@@ -179,6 +153,7 @@ async function PlayerResponsePage() {
   const acceptBtn = document.querySelectorAll(".player_request_accept");
   acceptBtn.forEach((accept) => {
     accept.addEventListener("click", async () => {
+		loadingPage.style.display = 'flex';
       const request_data_id = accept.dataset.id ;
       
       const user_data = {
@@ -200,19 +175,23 @@ async function PlayerResponsePage() {
 		    console.log(result);
 		    if (result.status === 200) {
 		      // Success, reload the page
+		      loadingPage.style.display = 'none';
 		      location.reload();
 		      Notify.success("Request created successfully");
 		    } else {
 		      // Handle error if needed
+		      loadingPage.style.display = 'none';
 		      console.error("Failed to delete:", result.message);
 		      Notify.error(result.message);
 		    }
 		  } else {
 		    // Handle HTTP error
+		    loadingPage.style.display = 'none';
 		    console.error("HTTP Error:", response.statusText);
 		    Notify.error(response.statusText);
 		  }
 		} catch (error) {
+			loadingPage.style.display = 'none';
 		  // Handle network or other errors
 		  console.error("Error:", error);
 		  Notify.error(error.message);
@@ -225,6 +204,7 @@ async function PlayerResponsePage() {
   const rejectbtn = document.querySelectorAll(".player_request_reject");
   rejectbtn.forEach((accept) => {
     accept.addEventListener("click", async () => {
+		loadingPage.style.display = 'flex';
       const request_data_id = accept.dataset.id ;
       
 	  const user_data = {
@@ -246,20 +226,24 @@ async function PlayerResponsePage() {
 		    console.log(result);
 		    if (result.status === 200) {
 		      // Success, reload the page
+		      loadingPage.style.display = 'none';
 		      location.reload();
 		      Notify.success("Request created successfully");
 		    } else {
 		      // Handle error if needed
+		      loadingPage.style.display = 'none';
 		      console.error("Failed to delete:", result.message);
 		      Notify.error(result.message);
 		    }
 		  } else {
 		    // Handle HTTP error
+		    loadingPage.style.display = 'none';
 		    console.error("HTTP Error:", response.statusText);
 		    Notify.error(response.statusText);
 		  }
 		} catch (error) {
 		  // Handle network or other errors
+		  loadingPage.style.display = 'none';
 		  console.error("Error:", error);
 		  Notify.error(error.message);
 		}
@@ -268,6 +252,7 @@ async function PlayerResponsePage() {
     });
   });
     // request reject end;
+    loadingPage.style.display = 'none';
 }
 
 async function updateAcceptData(endpoint, data) {
@@ -319,5 +304,13 @@ async function updateAcceptData(endpoint, data) {
     });
 }
 
+function previousPage() {
+	loadingPage.style.display = 'flex';
+	setTimeout(function () {
+  loadingPage.style.display = 'none';
+}, 5000);
+	
+  window.history.go(-1);
+}
 
 window.onload = PlayerResponsePage();

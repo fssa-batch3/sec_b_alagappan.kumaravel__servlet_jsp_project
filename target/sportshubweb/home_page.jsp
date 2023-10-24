@@ -24,6 +24,15 @@
 </head>
 
 <body>
+    <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
+
 	<%
 	int playerId = (int) request.getAttribute("playerId");
 	%>
@@ -254,21 +263,15 @@ double range_value = 0.0d;
 				</thead>
 				<tbody>
 					<tr>
-						<td><i class="fa-regular fa-face-smile-beam"></i></td>
-						<td>
-							<p>About</p>
-						</td>
-					</tr>
-					<tr>
 						<td><i class="fa-regular fa-face-rolling-eyes"></i></td>
 						<td>
-							<p>Why us</p>
+							<a href="./pages/homepage/indexdetails.html#whyus"><p>Why us</p></a>
 						</td>
 					</tr>
 					<tr>
 						<td><i class="fa-sharp fa-solid fa-question"></i></td>
 						<td>
-							<p>How to use</p>
+							<a href="./pages/homepage/indexdetails.html#how"><p>How to use</p></a>
 						</td>
 					</tr>
 				</tbody>
@@ -456,13 +459,18 @@ double range_value = 0.0d;
 	<footer>
 		<p>Follow us on</p>
 		<div>
-			<a href="#"> <i class="fa-brands fa-facebook"></i>
-			</a> <a href="#"> <i class="fa-brands fa-instagram"></i>
-			</a> <a href="#"> <i class="fa-brands fa-twitter"></i>
-			</a>
-		</div>
+                <a href="https://www.facebook.com/alagappan.alagappan.3958/">
+                    <i class="fa-brands fa-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/dynamic_mechons/">
+                    <i class="fa-brands fa-instagram"></i>
+                </a>
+                <a href="https://twitter.com/alagappank89292">
+                    <i class="fa-brands fa-twitter"></i>
+                </a>
+            </div>
 		<div>
-			<a href="#">About</a> <a href="#">Why us</a> <a href="#">How to
+			 <a href="./pages/homepage/indexdetails.html#whyus">Why us</a> <a href="./pages/homepage/indexdetails.html#how">How to
 				use</a>
 		</div>
 		<div class="rights">

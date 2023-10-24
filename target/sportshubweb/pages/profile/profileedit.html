@@ -12,6 +12,14 @@
     </head>
 
     <body>
+    <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
         <!-- header start -->
         <header>
             <a onclick="previousPage()">
@@ -49,14 +57,19 @@
                     <option value="FEMALE">Female</option>
                     <option value="OTHER">Prefer not to say</option>
                 </select>
+                
+				<label class="hide" style="display:none;">Area & District</label>
+				<div class="hide" id="address-form" style="display:none;">   
+                    <input id="addressSearch" type="text" placeholder="Search and enter your area">
+                </div>
+                            
+                  
+                <label class="unhide" >Area</label> 
+                <input class="unhide" id="user_area" type="text" onclick="display()" readonly> 
+
+                <label class="unhide">Distric</label> 
+                <input class="unhide" id="user_distric" type="text" onclick="display()" readonly>
 				
-				   
-                <label>Area</label> 
-                <input id="user_area" type="text" placeholder="Eg:Annanagar" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required> 
-
-                <label>Distric</label> 
-                <input id="user_distric" type="text" placeholder="Eg:chennai" title="Use only lowercase(abc...z)" pattern="^[a-zA-Z][a-zA-Z\s]{3,20}$" required>
-
                 <input id="user_password" type="hidden" >
 
                 <label>About</label>
@@ -73,7 +86,107 @@
 
         <script src="../../assets/js/login.js"></script>
         <script src="../../assets/js/profileEdit.js"></script>
-		        <script>
+        	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGhGk3DTCkjF1EUxpMm5ypFoQ-ecrS2gY&callback=initAutocomplete&libraries=places&v=weekly"
+        defer></script>
+        <script>
+
+        let autocomplete;
+        let address1Field;
+		const searchAddress = document.querySelectorAll(".hide");
+		const areaAndDistrict = document.querySelectorAll(".unhide");
+		
+		
+        function initAutocomplete() {
+            address1Field = document.querySelector("#addressSearch");
+
+            console.log(address1Field)
+            
+            autocomplete = new google.maps.places.Autocomplete(address1Field, {
+                componentRestrictions: { country: ["in"] },
+                fields: ["address_components", "geometry"],
+                types: ["geocode"],
+            });
+            autocomplete.addListener("place_changed", fillInAddress);
+        }
+        function fillInAddress() {
+            const place = autocomplete.getPlace();
+            console.log(place)
+            let address1 = "";
+            let postcode = "";
+            let localityName;
+            let administrativeAreaName;
+            let subLocalityName;
+            let subLocalityName2;
+            for (const component of place.address_components) {
+                const componentType = component.types[0];
+                switch (componentType) {
+                    case "street_number": {
+                        address1 = `${component.long_name} ${address1}`;
+                        break;
+                    }
+                    case "route": {
+                        address1 += component.short_name;
+                        break;
+                    }
+                    case "postal_code": {
+                        postcode = `${component.long_name}${postcode}`;
+                        break;
+                    }
+                    case "postal_code_suffix": {
+                        postcode = `${postcode}-${component.long_name}`;
+                        break;
+                    }
+                    case "locality": {
+                        localityName = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_3": {
+                        subLocalityName2 = component.long_name;
+                        break;
+                    }
+                    case "sublocality_level_1": {
+                        subLocalityName = component.long_name;
+                        break;
+                    }
+                    case "administrative_area_level_3":
+                        administrativeAreaName = component.long_name;
+                        document.querySelector("#user_distric").value = component.long_name;
+                        break;
+                }
+            }
+            if (localityName === administrativeAreaName) {
+                document.querySelector("#user_area").value = subLocalityName;
+            }
+            else {
+                document.querySelector("#user_area").value = localityName;
+                
+            }
+            address1Field.value = address1;
+            address1Field.focus();
+            areaAndDistrict.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        }
+        // window.initAutocomplete = initAutocomplete;
+        
+        loadingPage.style.display = 'none';
+        
+        
+        function display(){
+        	address1Field.focus();
+        	areaAndDistrict.forEach(element => {
+        	    element.style.display = 'none';
+        	});
+        	searchAddress.forEach(element => {
+        	    element.style.display = 'block';
+        	});
+        }
+
+        
+        
         var textarea = document.getElementById("image_host_url");
 
         textarea.addEventListener("input", function () {

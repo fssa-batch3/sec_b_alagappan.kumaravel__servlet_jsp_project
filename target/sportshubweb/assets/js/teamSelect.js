@@ -9,6 +9,7 @@ const my_name = urlParams.get("my_name");
 const team_id = urlParams.get("team_id");
 
 const myTeamRelId = JSON.parse(urlParams.get("cap_rel_id"));
+const loadingPage = document.getElementById("load_body");
 
 const myTeamId = JSON.parse(urlParams.get("team_id"))
 
@@ -99,7 +100,7 @@ searchButton.addEventListener("click", async () => {
 		await pagination(mergedArray);
 		loadingSpinner.style.display = 'none';
 		if (mergedArray.length == 0) {
-			document.querySelector(".join-team-content").innerHTML = "No teams available";
+			document.querySelector(".join-team-content").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No teams available</div>';
 		}
 
 	}
@@ -194,6 +195,7 @@ function pagination(requested_teams) {
 	const bookCovers = document.querySelectorAll(".popup-name");
 	bookCovers.forEach((each) => {
 		each.addEventListener("click", async () => {
+			loadingPage.style.display = 'flex';
 			const click_id = each.dataset.id;
 
 			console.log(click_id);
@@ -241,6 +243,8 @@ function pagination(requested_teams) {
 				"button.profile-view-btn"
 			);
 			popup_viewprofile.setAttribute("data-viewid", click_id);
+			
+			loadingPage.style.display = 'none';
 		});
 	});
 
@@ -258,16 +262,16 @@ function pagination(requested_teams) {
 async function teamSelectPage() {
 
 	loadMoreButton.style.display = 'none';
-	loadingSpinner.style.display = 'block';
+	loadingPage.style.display = 'flex';
 
 	const all_teams = await getDataById("teams", "?page_size=5&last_team_id=0")
 	listOfTeam = [...listOfTeam, ...all_teams];
 
 	await pagination(listOfTeam);
-	loadingSpinner.style.display = 'none';
 	if (listOfTeam.length == 5) {
 		loadMoreButton.style.display = 'inline';
 	}
+	loadingPage.style.display = 'none';
 
 }
 function ClosePopup() {
@@ -276,6 +280,7 @@ function ClosePopup() {
 }
 
 function previousPage() {
+	
 	window.history.go(-1);
 }
 

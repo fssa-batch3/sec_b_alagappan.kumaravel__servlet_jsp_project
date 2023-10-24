@@ -36,6 +36,14 @@
 }
 </style>
 <body>
+    <div id="load_body">
+    <div class="loading-cont">
+        <div class="cont">
+            <span></span>
+            <span></span>
+        </div>
+    	</div>
+    </div>
 	<!-- header start -->
 	<header class="team-response-header">
 		<a id="back_button"> <i class="fa-solid fa-arrow-left"></i>
@@ -215,10 +223,15 @@
 	<script>
     const player_id = JSON.parse(sessionStorage.getItem("playerId"));
 	const backButton = document.getElementById("back_button")
+	const loadingPage = document.getElementById("load_body");
+
 	const { origin } = window.location;
 	
 	backButton.addEventListener("click" ,() => {
-	
+		loadingPage.style.display = 'flex';
+		setTimeout(function () {
+		  loadingPage.style.display = 'none';
+		}, 10000); 
 		window.location.href = origin+"/sportshubweb/home?player_id="+player_id ;
 	    });
 	
@@ -226,6 +239,7 @@
 	  const switchnewcap = document.querySelectorAll(".fa-trash-can");
 	  switchnewcap.forEach((each) => {
 	    each.addEventListener("click", async () => {
+	    	loadingPage.style.display = 'flex';
 	      const request_data = each.dataset.id;
 
 	     const user_data = {
@@ -248,20 +262,24 @@
 		    console.log(result);
 		    if (result.status === 200) {
 		      // Success, reload the page
+		      loadingPage.style.display = 'none';
 		      location.reload();
 		      Notify.success("Deleted successfully");
 		    } else {
 		      // Handle error if needed
+		      loadingPage.style.display = 'none';
 		      console.error("Failed to delete:", result.message);
 		      Notify.error(result.message);
 		    }
 		  } else {
 		    // Handle HTTP error
+		    loadingPage.style.display = 'none';
 		    console.error("HTTP Error:", response.statusText);
 		    Notify.error(response.statusText);
 		  }
 		} catch (error) {
 		  // Handle network or other errors
+		  loadingPage.style.display = 'none';
 		  console.error("Error:", error);
 		  Notify.error(error.message);
 		}

@@ -10,6 +10,8 @@ const url_id = JSON.parse(urlParams.get("player_id"));
 
 const my_id = JSON.parse(sessionStorage.getItem("playerId"));
 
+const loadingPage = document.getElementById("load_body");
+
 // ----------------- button css animation start
 
 function member() {
@@ -59,11 +61,11 @@ async function getDataById(endpoint, user_api_id) {
 	return data;
 }
 
-function teamCard(teamProfile) {
-const template = `<div class="playerteam">
-                <div class="myteam">
+function teamCard(teamProfile, background) {
+const template = `<div class="playerteam" data-id="${teamProfile.id}">
+                <div class="myteam" style="background-color: ${background}">
                     <div class="teamimagediv">
-                        <img class="teamprofile" src="${teamProfile.teamImageUrl}" alt="${
+                        <img class="teamprofile" src="${teamProfile.Url}" alt="${
     teamProfile.teamName
     }">
                     </div>
@@ -75,7 +77,7 @@ const template = `<div class="playerteam">
                                 <p>Since ${moment(teamProfile.dateOfJoin).format("MMM Do YY")}</p></div>
                         </div>
                         <div class="matchdetails"><i class="fa-solid fa-location-dot"></i>
-                            <p>${teamProfile.address.area}, ${teamProfile.address.distric}</p></div>
+                            <p>${teamProfile.address.area}, ${teamProfile.address.district}</p></div>
     
                             <div class="matchdetails"><i class="fa-solid fa-circle-info"></i>
                                 <p>${teamProfile.about}</p></div>	
@@ -107,50 +109,37 @@ return team_players_id;
 }
 
 async function playerProfilePage(){
+	
+	loadingPage.style.display = 'flex';
 
 let playerProfile = await getDataById("player/detail?player_id=", url_id); // here i find player profile
 
-/*const area_obj = await getplayerDet("area_list", playerProfile["areaUniqueId"]);
-// ------------players team start-----
-playerProfile["address"] = area_obj;
-console.log(playerProfile);
-*/
-/*const team_player_all_rel = await getRelationDataByPlayer("player_team_relation", url_id)
-*/
-/*const find_relation = team_player_all_rel.find(e => e.activeStatus === 1 || e.activeStatus === 2)
 
-let teamProfile = "";
-// we find players team if he/she in team this condition works (start)
-if (find_relation) {
+let teamProfile = await getDataById("player/teams?player_id=", url_id);
 
-    teamProfile = await getplayerDet("team_details_list", find_relation["teamId"]);
-    const team_area_obj = await getplayerDet("area_list", teamProfile["address_id"]);
-    teamProfile["address"] = team_area_obj ;
-    // here i find the team profile
-  console.log(teamProfile);
-  const my_team_id = teamProfile.id;
+console.log(teamProfile)
+if(teamProfile.length == 0){
+	document.querySelector("section.three .playermatch").innerHTML = "Not played with any Team"
+}
+for(let i=0;i<teamProfile.length;i++){
+	if(teamProfile[i]["currentTeam"]){
+		document.querySelector("section.three .playermatch").insertAdjacentHTML("afterbegin", teamCard(teamProfile[i] , 'mistyrose'));
+	}else{
+		document.querySelector("section.three .playermatch").insertAdjacentHTML("beforeend", teamCard(teamProfile[i]) , '#fff');
+	}
+	
+}
+  
 
-  document.querySelector("section.three .playermatch").innerHTML =
-    teamCard(teamProfile);
-
-  document.querySelector(".playerteam").addEventListener("click",() => {
-    window.location.href = `../profile/teamprofile.html?team_id=${my_team_id}`;
+ document.querySelectorAll(".playerteam").forEach((each) => {
+		each.addEventListener("click", async () => {
+			
+    window.location.href = `../profile/teamprofile.html?team_id=${each.dataset.id}`;
+  })
   });
 
-}*/
-// we find players team if he/she in team this condition works (end)
 
 
-/*teamProfile = await getplayerDet("team_details_list", find_relation["teamId"]);
-
-
-  document.querySelector("section.three .playermatch").innerHTML = teamCard(teamProfile);
-
-  document.querySelector(".playerteam").addEventListener("click",() => {
-    window.location.href = `../profile/teamprofile.html?team_id=${my_team_id}`;
-  });
-
-*/
 // ------------players team end-----
 
 console.log(playerProfile);
@@ -201,6 +190,7 @@ function whatsapp() {
   window.location.href=`https://wa.me/${playerProfile.phoneNumber}` ;
 }
 
+loadingPage.style.display = 'none';
 // PLAYER PROFILE END
 
 }

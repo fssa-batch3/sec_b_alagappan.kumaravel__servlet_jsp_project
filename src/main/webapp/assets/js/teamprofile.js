@@ -311,6 +311,11 @@ async function teamPageLoad() {
 }
 
 function previousPage() {
+		loadingPage.style.display = 'flex';
+	setTimeout(function () {
+  loadingPage.style.display = 'none';
+}, 5000);
+	
 	window.history.go(-1);
 }
 window.onload = teamPageLoad();

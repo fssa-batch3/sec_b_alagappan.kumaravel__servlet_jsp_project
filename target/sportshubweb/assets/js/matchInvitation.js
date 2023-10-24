@@ -9,6 +9,7 @@ const urlParams = new URLSearchParams(queryString);
 const myTeamRelId = JSON.parse(urlParams.get("cap_rel_id"));
 
 const captainStatus = JSON.parse(urlParams.get("captainStatus"));
+const loadingPage = document.getElementById("load_body");
 
 const myTeamId = JSON.parse(urlParams.get("team_id"))
 
@@ -34,7 +35,7 @@ async function getDataById(endpoint, user_api_id) {
 
 async function matchInvitatonPage() {
 
-
+	loadingPage.style.display = 'flex';
 	const endPoint = "?teamId="+myTeamId+"&teamCaptainRelId="+myTeamRelId;
 	
 	const matchInvitaton = await getDataById("invitation", endPoint);
@@ -44,10 +45,13 @@ async function matchInvitatonPage() {
 	let count = 0;
 	let result_data = "";
 
+if(matchInvitaton.length == 0){
+	document.querySelector(".match-invitation-main").innerHTML = '<div style="display: flex; justify-content: center; align-items: center; height: 80vh;">No Invitation found</div>'
+}
 
-	for (let i = 0; i < matchInvitaton.length; i++) {
+	for (const element of matchInvitaton) {
 
-		const opponent_team_object = matchInvitaton[i]["createdTeam"]
+		const opponent_team_object = element["createdTeam"]
 
 		const div_class_invitation = document.createElement("div");
 		div_class_invitation.setAttribute("class", "invitation");
@@ -91,11 +95,11 @@ async function matchInvitatonPage() {
 		let friend = "";
 		let class_type = "";
 
-		if (matchInvitaton[i]["opponentType"] === "TO_TEAM") {
+		if (element["opponentType"] === "TO_TEAM") {
 			friend = "Friend";
 			class_type = "frnd";
 		}
-		if (matchInvitaton[i]["opponentType"] === "TO_AREA") {
+		if (element["opponentType"] === "TO_AREA") {
 			friend = "Public";
 			class_type = "public";
 		}
@@ -119,7 +123,7 @@ async function matchInvitatonPage() {
 		div_class_invitation_two_subdiv1.append(team_name_subdiv_typeheader);
 
 		const team_name_subdiv_typevalue = document.createElement("p");
-		team_name_subdiv_typevalue.innerText = matchInvitaton[i].typeOfMatch == 1 ? "Betting Match" : "Friendly Match";
+		team_name_subdiv_typevalue.innerText = element.typeOfMatch == 1 ? "Betting Match" : "Friendly Match";
 		div_class_invitation_two_subdiv1.append(team_name_subdiv_typevalue);
 
 		const div_class_invitation_two_subdiv2 = document.createElement("div");
@@ -131,7 +135,7 @@ async function matchInvitatonPage() {
 
 		const team_name_subdiv_timevalue = document.createElement("p");
 
-		const match_time = matchInvitaton[i].matchTime;
+		const match_time = element.matchTime;
 
 		team_name_subdiv_timevalue.innerText = moment(match_time).format('llll')
 	
@@ -153,7 +157,7 @@ async function matchInvitatonPage() {
 		);
 		div_class_invitation_three_subdiv1.append(div_class_invitation_three_icon1);
 		
-		const captain_obj = matchInvitaton[i].createdTeamCaptain;
+		const captain_obj = element.createdTeamCaptain;
 
 		const captain = captain_obj["userName"]
 
@@ -173,8 +177,8 @@ async function matchInvitatonPage() {
 
 		const div_class_invitation_three_para2 = document.createElement("p");
 		div_class_invitation_three_para2.innerText =
-			`${matchInvitaton[i].members}  Members` +
-			` (Age :${matchInvitaton[i].membersAgeFrom} to ${matchInvitaton[i].membersAgeTo})`;
+			`${element.members}  Members` +
+			` (Age :${element.membersAgeFrom} to ${element.membersAgeTo})`;
 		div_class_invitation_three_subdiv2.append(div_class_invitation_three_para2);
 
 		const div_class_invitation_three_subdiv3 = document.createElement("div");
@@ -188,7 +192,7 @@ async function matchInvitatonPage() {
 		div_class_invitation_three_subdiv3.append(div_class_invitation_three_icon3);
 
 		const div_class_invitation_three_para3 = document.createElement("p");
-		div_class_invitation_three_para3.innerText = matchInvitaton[i].location;
+		div_class_invitation_three_para3.innerText = element.location;
 		div_class_invitation_three_subdiv3.append(div_class_invitation_three_para3);
 
 		const div_class_invitation_three_subdiv4 = document.createElement("div");
@@ -202,7 +206,7 @@ async function matchInvitatonPage() {
 		div_class_invitation_three_subdiv4.append(div_class_invitation_three_icon4);
 
 		const div_class_invitation_three_para4 = document.createElement("p");
-		div_class_invitation_three_para4.innerText = matchInvitaton[i].information;
+		div_class_invitation_three_para4.innerText = element.information;
 		div_class_invitation_three_subdiv4.append(div_class_invitation_three_para4);
 
 		// accept reject btn
@@ -216,7 +220,7 @@ async function matchInvitatonPage() {
 		div_reject_button.setAttribute("type", "button");
 		div_reject_button.setAttribute("class", "reject-btn");
 		div_reject_button.setAttribute("data-caprelid", myTeamRelId);
-		div_reject_button.setAttribute("data-id", matchInvitaton[i].id);
+		div_reject_button.setAttribute("data-id", element.id);
 		div_accept_reject.append(div_reject_button);
 
 		const div_accept_button = document.createElement("button");
@@ -224,7 +228,7 @@ async function matchInvitatonPage() {
 		div_accept_button.setAttribute("type", "button");
 		div_accept_button.setAttribute("class", "accept-btn");
 		div_accept_button.setAttribute("data-caprelid", myTeamRelId);
-		div_accept_button.setAttribute("data-id", matchInvitaton[i].id);
+		div_accept_button.setAttribute("data-id", element.id);
 		div_accept_reject.append(div_accept_button);
 }
 		// div four
@@ -243,7 +247,7 @@ async function matchInvitatonPage() {
 
 		const div_class_invitation_four_p = document.createElement("p");
 
-		const createdTime = matchInvitaton[i].createdAt;
+		const createdTime = element.createdAt;
 		div_class_invitation_four_p.innerText = moment(createdTime)
 			.startOf("sec")
 			.fromNow();
@@ -255,7 +259,8 @@ async function matchInvitatonPage() {
 	const selectbtn = document.querySelectorAll(".accept-btn");
 	selectbtn.forEach((each) => {
 		each.addEventListener("click", async () => {
-			console.log("work1");
+			loadingPage.style.display = 'flex';
+
 			const match_id = JSON.parse(each.dataset.id)
 			const rel_id = JSON.parse(each.dataset.caprelid)
 			console.log(match_id, rel_id)
@@ -265,6 +270,7 @@ async function matchInvitatonPage() {
 			if(getAcceptData != null){
 				location.reload();
 			}
+			loadingPage.style.display = 'none';
 			
 		});
 	});
@@ -272,7 +278,8 @@ async function matchInvitatonPage() {
 	const rejectbtn = document.querySelectorAll(".reject-btn");
 	rejectbtn.forEach((each) => {
 		each.addEventListener("click", async () => {
-console.log("work2");
+			loadingPage.style.display = 'flex';
+
 			const match_id = JSON.parse(each.dataset.id)
 			const rel_id = JSON.parse(each.dataset.caprelid)
 			const lastPoint = "?teamCaptainRelId="+rel_id+"&matchId="+match_id;
@@ -281,13 +288,19 @@ console.log("work2");
 			if(getAcceptData != null){
 				location.reload();
 			}
+			loadingPage.style.display = 'none';
 		});
 	});
-
+loadingPage.style.display = 'none';
 }
 
 
 function previousPage() {
+		loadingPage.style.display = 'flex';
+	setTimeout(function () {
+  loadingPage.style.display = 'none';
+}, 5000);
+	
 	window.history.go(-1);
 }
 

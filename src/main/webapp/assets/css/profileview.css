@@ -307,11 +307,11 @@ main{
     text-align: center;
     padding-top: 7%;
     font-size: 18px;
-    /* display: flex;
+    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
-    justify-content: center; */
+    justify-content: center;
+
 }
 .empty_content{
     font-size: 18px;
@@ -426,7 +426,6 @@ main{
 /* player team start*/
 .playerteam{
     width: 100%;
-    height: 65vh;
     background-color: var(--offwhite);
     padding-top: 5px;
 }
